@@ -1,5 +1,5 @@
 res://Scenes/player.tscn
 res://Scripts/player.gd
-res://Scenes/movement_component.gd
+res://Scenes/projectile.tscn
+res://Scripts/projectile.gd
 res://Scenes/game.tscn
-res://Scenes/crosshair.gd
