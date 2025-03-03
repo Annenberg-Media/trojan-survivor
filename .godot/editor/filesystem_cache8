@@ -1,3 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1740960254
-icon.svg::CompressedTexture2D::1561049655367057132::1740960063::1740960071::1::::<><>::
+::res://::1740961218
+icon.svg::CompressedTexture2D::1561049655367057132::1740960958::1740960982::1::::<><>::
+README.md::TextFile::-1::1740960958::0::1::::<><>::
+::res://Scenes/::1740962116
+game.tscn::PackedScene::8661079477747649586::1740962116::0::1::::<><>::
+player.tscn::PackedScene::8287699318104653086::1740962127::0::1::::<><>::uid://wigi3jjsakjs::::res://icon.svg<>res://Scripts/player.gd
+camera.gd::GDScript::-1::1740962141::0::1::::<>Camera2D<>::
+::res://Scripts/::1740962103
+player.gd::GDScript::-1::1740962103::0::1::::<>CharacterBody2D<>::
