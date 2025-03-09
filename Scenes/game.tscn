@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvnqyi6j8d427"]
+[gd_scene load_steps=3 format=3 uid="uid://dvnqyi6j8d427"]
 
 [ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_h47eo"]
+[ext_resource type="PackedScene" uid="uid://82a6q3j2o85q" path="res://Scenes/background.tscn" id="2_24uq2"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_h47eo")]
+
+[node name="Background" parent="." instance=ExtResource("2_24uq2")]
+show_behind_parent = true
