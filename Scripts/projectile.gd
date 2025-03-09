@@ -23,3 +23,8 @@ func _physics_process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime < 0:
 		queue_free()
+		
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.has_method("is_enemy"):
+		body.queue_free()
