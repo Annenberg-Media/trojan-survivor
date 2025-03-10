@@ -1,8 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqcvgxv13m12a"]
+[gd_scene load_steps=10 format=3 uid="uid://dqcvgxv13m12a"]
 
 [ext_resource type="Texture2D" uid="uid://wigi3jjsakjs" path="res://icon.svg" id="1_0v1i3"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_px5vt"]
 [ext_resource type="Script" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
+
+[sub_resource type="Gradient" id="Gradient_4bkvw"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ob1c"]
+gradient = SubResource("Gradient_4bkvw")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.796117, 0.140777)
+
+[sub_resource type="Gradient" id="Gradient_i3xpu"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v14o5"]
 radius = 32.0
@@ -21,6 +34,15 @@ fill_to = Vector2(0.830275, 0.133028)
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_px5vt")
+
+[node name="MovementDustParticle" type="CPUParticles2D" parent="."]
+position = Vector2(0, 21)
+amount = 3
+texture = SubResource("GradientTexture2D_3ob1c")
+gravity = Vector2(0, -100)
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+color_ramp = SubResource("Gradient_i3xpu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

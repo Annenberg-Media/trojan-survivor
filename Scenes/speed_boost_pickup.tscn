@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4rnd0irrjpw4"]
+
+[ext_resource type="Script" path="res://Scripts/speed_boost_pickup.gd" id="1_fsmp7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf4fd"]
+radius = 29.14
+
+[sub_resource type="Gradient" id="Gradient_phh2i"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b247"]
+gradient = SubResource("Gradient_phh2i")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.848624, 0.229358)
+
+[node name="SpeedBoostPickup" type="Area2D"]
+script = ExtResource("1_fsmp7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wf4fd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+texture = SubResource("GradientTexture2D_4b247")
+
+[node name="TemporaryLabel" type="Label" parent="Sprite2D"]
+offset_left = -18.0
+offset_top = -11.0
+offset_right = 35.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "SPD+"
+
+[node name="DurationTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]

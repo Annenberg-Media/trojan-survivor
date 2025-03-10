@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready
 var crosshair: Node2D = $Crosshair
@@ -10,6 +11,8 @@ var shooting_cooldown_amount: float = 0.2
 @export
 ## player's movement speed in pixels per second
 var movement_speed: float = 200
+@onready
+var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 
 
 func _ready() -> void:
@@ -37,6 +40,9 @@ func _physics_process(delta: float) -> void:
 	move_dir = move_dir.normalized()
 	
 	global_position += move_dir * (movement_speed * delta)
+	
+	# emit movement_dust_particle if we are moving
+	movement_dust_particle.emitting = move_dir != Vector2.ZERO
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot_projectile(global_position.direction_to(crosshair.global_position))
