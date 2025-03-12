@@ -59,3 +59,6 @@ func shoot_projectile(dir: Vector2):
 	new_projectile.direction = dir
 	get_tree().root.add_child(new_projectile)
 	shoot_cooldown_timer.start(shooting_cooldown_amount)
+	
+func is_player():
+	return true
