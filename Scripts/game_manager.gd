@@ -5,8 +5,8 @@ extends Node2D
 
 var enemy_1_scene = preload("res://Scenes/enemy_1.tscn")
 var enemy_2_scene = preload("res://Scenes/enemy_2.tscn")
-var screen_rect 
 var rng = RandomNumberGenerator.new()
+@onready var spawnTimer = $EnemySpawnTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,26 +16,34 @@ func _ready() -> void:
 	elif enemy_2_scene == null:
 		print("ERROR: enemy 2 scene is null!")
 		return
-	spawn_enemy()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	'''
+	=== Temporary code of timer getting faster and faster to spawn enemies ===
+	faster as game progresses. It technically works, but I'm almost certain 
+	that there will be a more elegant way to do this; will look into later :)
+	if spawnTimer.wait_time > 1:
+		spawnTimer.wait_time -= 0.1 * delta
+	'''
 	pass
 	
-func spawn_enemy():
-	var enemy1 = enemy_1_scene.instantiate()
-	var enemy2 = enemy_2_scene.instantiate()
-	
-	if enemy1 == null:
-		print("ERROR: Enemy instantiation failed")
-		return 
-	enemy1.position = enemy_spawn_position()
-	enemy2.position = enemy_spawn_position()
-	
-	add_child(enemy1)
-	add_child(enemy2)
-	
+func spawn_enemy(num: int):
+	for i in range(num):
+		var rand_enemy_type = randi_range(1, 2)
+		print("SPAWNING: Type ", rand_enemy_type)
+		match rand_enemy_type:
+			1:
+				var enemy1 = enemy_1_scene.instantiate()
+				enemy1.position = enemy_spawn_position()
+				add_child(enemy1)
+			2:
+				var enemy2 = enemy_2_scene.instantiate()
+				enemy2.position = enemy_spawn_position()
+				add_child(enemy2)
+
+
 func enemy_spawn_position():
 	# Generates a random enemy spawn position, just outside of camera visible range
 	
@@ -57,12 +65,16 @@ func enemy_spawn_position():
 			spawn_position = Vector2(camera_position.x + viewport_size.x/2 + spawn_offset, 
 			randf_range(camera_position.y - viewport_size.y/2, camera_position.y + viewport_size.y/2))
 		2:
-			spawn_position = Vector2(randf_range(camera_position.x - viewport_size.x/2, camera_position.x + viewport_size/2),
+			spawn_position = Vector2(randf_range(camera_position.x - viewport_size.x/2, camera_position.x + viewport_size.x/2),
 			camera_position.y - viewport_size.y/2 - spawn_offset)
 		3:
 			spawn_position = Vector2(randf_range(camera_position.x - viewport_size.x/2, camera_position.x + viewport_size.x/2),
 			camera_position.y + viewport_size.y/2 + spawn_offset)
 			
 	return spawn_position
-	
-	
+
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	var num_enemies = randi_range(1, 3)
+	print("Timer end; spawning ", num_enemies, " enemies!")
+	spawn_enemy(num_enemies)
