@@ -1,6 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
+@export
+var current_health: int = 3
+var _max_health: int = 3
+
 @onready
 var crosshair: Node2D = $Crosshair
 var bullet_prefab: PackedScene = preload("uid://pe8pcbqp47dd")
@@ -62,3 +66,8 @@ func shoot_projectile(dir: Vector2):
 	
 func is_player():
 	return true
+
+func receive_hit(amount: int = 1):
+	current_health -= 1
+	if current_health <= 0:
+		print("PLAYER HEALTH IS ZERO")
