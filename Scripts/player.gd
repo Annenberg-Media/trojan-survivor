@@ -4,6 +4,7 @@ class_name Player
 @export
 var current_health: int = 3
 var _max_health: int = 3
+var health_overload: int = 0
 
 @onready
 var crosshair: Node2D = $Crosshair
@@ -18,6 +19,7 @@ var movement_speed: float = 200
 @onready
 var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 
+signal game_over
 
 func _ready() -> void:
 	shoot_cooldown_timer = Timer.new()
@@ -69,5 +71,15 @@ func is_player():
 
 func receive_hit(amount: int = 1):
 	current_health -= 1
-	if current_health <= 0:
+	# if there is more health in our overload
+	if health_overload > 0:
+		current_health += health_overload
+		if current_health > _max_health:
+			health_overload = current_health - _max_health
+			current_health = _max_health
+	elif current_health <= 0:
 		print("PLAYER HEALTH IS ZERO")
+		game_over.emit()
+		
+func get_max_health() -> int:
+	return _max_health
