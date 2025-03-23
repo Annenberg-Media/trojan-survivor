@@ -8,6 +8,7 @@ extends Node2D
 var valid_id = []
 var generated_chunks = {}
 var random = RandomNumberGenerator.new()
+var last_camera_chunk = Vector2i.ZERO
 
 func _ready():
 	random.randomize()
@@ -26,18 +27,38 @@ func _ready():
 func _process(_delta):
 	var camera = get_viewport().get_camera_2d()
 	
-	# Update the chunks around camer
+	# Update the chunks around camera
 	update_chunks_around_camera(camera.global_position)
 
 func update_chunks_around_camera(pos):
 	var chunk_x = int(pos.x / (chunk_size * tile_size))
 	var chunk_y = int(pos.y / (chunk_size * tile_size))
 	
-	# Get all chunks for the view distance
+	# Updaate after moving to another chunk
+	var current_chunk = Vector2i(chunk_x, chunk_y)
+	if current_chunk == last_camera_chunk:
+		return
+	
+	last_camera_chunk = current_chunk
+	
+	# Get chunk from view distance
 	for x in range(chunk_x - view_distance, chunk_x + view_distance + 1):
 		for y in range(chunk_y - view_distance, chunk_y + view_distance + 1):
 			generate_chunk(x, y)
-
+	
+	# Deload chunks when too far away 
+	var chunks_to_remove = []
+	for chunk_key in generated_chunks:
+		var coords = chunk_key.split(",")
+		var x = int(coords[0])
+		var y = int(coords[1])
+		
+		if abs(x - chunk_x) > view_distance + 5 or abs(y - chunk_y) > view_distance + 5:
+			chunks_to_remove.append(chunk_key)
+	
+	# Remove the chunks
+	for chunk_key in chunks_to_remove:
+		deload_chunk(chunk_key)
 
 func generate_chunk(chunk_x, chunk_y):
 	var chunk_key = str(chunk_x) + "," + str(chunk_y)
@@ -53,9 +74,27 @@ func generate_chunk(chunk_x, chunk_y):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			
-			# Place a random tile from array
-			var random_index = random.randi() % valid_id.size()
-			var tile_id = valid_id[random_index]
-			
-			# Set the tile in the tilemap
-			tilemap.set_cell(0, start_pos + Vector2i(x, y), 0, Vector2i(tile_id, 0))
+			# Make sure we have valid tiles to choose from
+			if valid_id.size() > 0:
+				# Place a random tile from array
+				var random_index = random.randi() % valid_id.size()
+				var tile_id = valid_id[random_index]
+				
+				# Set the tile in the tilemap
+				tilemap.set_cell(0, start_pos + Vector2i(x, y), 0, Vector2i(tile_id, 0))
+
+func deload_chunk(chunk_key):
+	var coords = chunk_key.split(",")
+	var chunk_x = int(coords[0])
+	var chunk_y = int(coords[1])
+	
+	# Start position of chunk
+	var start_pos = Vector2i(chunk_x * chunk_size, chunk_y * chunk_size)
+	
+	# Clear tiles in chunk
+	for x in range(chunk_size):
+		for y in range(chunk_size):
+			tilemap.erase_cell(0, start_pos + Vector2i(x, y))
+	
+	# Remove
+	generated_chunks.erase(chunk_key)
