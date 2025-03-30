@@ -1,5 +1,7 @@
 extends Node2D
 
+signal time_changed(new_time: float)
+signal score_changed(new_score: int)
 
 @export var spawn_interval: float = 2.0
 
@@ -7,6 +9,9 @@ var enemy_1_scene = preload("res://Scenes/enemy_1.tscn")
 var enemy_2_scene = preload("res://Scenes/enemy_2.tscn")
 var rng = RandomNumberGenerator.new()
 @onready var spawnTimer = $EnemySpawnTimer
+
+var game_time: float = 0
+var score: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,7 +32,9 @@ func _process(delta: float) -> void:
 	if spawnTimer.wait_time > 1:
 		spawnTimer.wait_time -= 0.1 * delta
 	'''
-	pass
+	# pass
+	game_time += delta
+	emit_signal("time_changed", game_time)
 	
 func spawn_enemy(num: int):
 	for i in range(num):
@@ -78,3 +85,8 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var num_enemies = randi_range(1, 3)
 	print("Timer end; spawning ", num_enemies, " enemies!")
 	spawn_enemy(num_enemies)
+	
+	
+func add_score(points: int) -> void:
+	score += points
+	emit_signal("score_changed", score)

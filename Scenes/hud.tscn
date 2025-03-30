@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://da8p5kmxoju3p"]
+
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cqfg0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]
+expand_margin_left = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 1.0
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("1_cqfg0")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="Panel" type="Panel" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nc7vk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Health:
+"
+
+[node name="Time" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Time: "
+
+[node name="Score" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score:"
