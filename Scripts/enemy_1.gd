@@ -5,7 +5,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player:
 		var direction = (player.position - position).normalized()
 		velocity = direction * 85

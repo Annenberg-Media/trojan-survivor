@@ -5,7 +5,7 @@ var enemy_bullet: PackedScene = preload("res://Scenes/enemy_projectile.tscn")
 @onready var shoot_cooldown_timer = $ShootCooldown
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Move toward player until player in shooting range
 	if player and (player.position - position).length() > 400:
 		var direction = (player.position - position).normalized()

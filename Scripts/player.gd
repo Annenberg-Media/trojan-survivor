@@ -19,6 +19,9 @@ var movement_speed: float = 200
 @onready
 var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 
+var exp_amount: int = 0
+var _exp_per_level: int = 1000
+
 signal game_over
 
 func _ready() -> void:
@@ -70,7 +73,7 @@ func is_player():
 	return true
 
 func receive_hit(amount: int = 1):
-	current_health -= 1
+	current_health -= amount
 	# if there is more health in our overload
 	if health_overload > 0:
 		current_health += health_overload
@@ -83,3 +86,14 @@ func receive_hit(amount: int = 1):
 		
 func get_max_health() -> int:
 	return _max_health
+
+func add_exp(amount: int) -> void:
+	exp_amount += amount
+	print("Added " + str(amount) + " EXP. Current: " + str(exp_amount))
+	if exp_amount > _exp_per_level:
+		print("Level up!")
+		exp_amount -= _exp_per_level
+
+func on_level_up() -> void:
+	# choose upgrade option
+	pass

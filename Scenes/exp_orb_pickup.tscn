@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlinpehdfxii0"]
+
+[ext_resource type="Script" path="res://Scripts/exp_orb_pickup.gd" id="1_ws2vy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf4fd"]
+radius = 29.14
+
+[sub_resource type="Gradient" id="Gradient_phh2i"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b247"]
+gradient = SubResource("Gradient_phh2i")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.848624, 0.229358)
+
+[node name="ExpOrbPickup" type="Area2D"]
+script = ExtResource("1_ws2vy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wf4fd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+texture = SubResource("GradientTexture2D_4b247")
+
+[node name="TemporaryLabel" type="Label" parent="Sprite2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -43.5
+offset_right = -5.5
+offset_bottom = -20.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "EXP"
+horizontal_alignment = 1
+
+[node name="DurationTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]
