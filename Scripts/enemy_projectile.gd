@@ -28,4 +28,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("is_player"):
 		# TO BE CHANGED when player health implemented 
 		print("Player hit by enemy projectile!")
+		if body is Player:
+			body.receive_hit()
+			
 		queue_free()

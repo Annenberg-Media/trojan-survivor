@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+static var Instance: Player
+
 @export
 var current_health: int = 3
 var _max_health: int = 3
@@ -19,12 +21,20 @@ var movement_speed: float = 200
 @onready
 var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 
+@onready
+var animation_player: AnimationPlayer = $AnimationPlayer
+
 var exp_amount: int = 0
 var _exp_per_level: int = 1000
 
 signal game_over
+signal health_changed(amount: int)
+
 
 func _ready() -> void:
+	if Player.Instance == null:
+		Player.Instance = self
+		
 	shoot_cooldown_timer = Timer.new()
 	shoot_cooldown_timer.autostart = false
 	shoot_cooldown_timer.one_shot = true
@@ -74,6 +84,9 @@ func is_player():
 
 func receive_hit(amount: int = 1):
 	current_health -= amount
+	health_changed.emit(current_health)
+	animation_player.play("hit_blink")
+	
 	# if there is more health in our overload
 	if health_overload > 0:
 		current_health += health_overload
