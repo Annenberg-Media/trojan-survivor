@@ -19,7 +19,7 @@ show_behind_parent = true
 [node name="SpeedBoostPickup" parent="." instance=ExtResource("4_m5vnq")]
 position = Vector2(402, 106)
 
-[node name="Hud" parent="." instance=ExtResource("5_blmn6")]
-
 [node name="ExpOrbPickup" parent="." instance=ExtResource("6_gimdb")]
 position = Vector2(-231, 202)
+
+[node name="Hud" parent="." instance=ExtResource("5_blmn6")]
