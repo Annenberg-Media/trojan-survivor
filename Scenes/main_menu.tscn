@@ -81,7 +81,7 @@ offset_right = 68.0
 offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Tutorial"
+text = "TUTORIAL"
 label_settings = SubResource("LabelSettings_8d33d")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
