@@ -48,14 +48,14 @@ text = "Time: "
 layout_mode = 2
 text = "Score:"
 
-[node name="LevelUpMenu" type="Panel" parent="HUD"]
+[node name="UpgradeMenu" type="Panel" parent="HUD"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/LevelUpMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -73,16 +73,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/LevelUpMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/UpgradeMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "CHOOSE YOUR UPGRADE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -90,14 +90,14 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
 layout_mode = 2
 
-[node name="Button2" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button2" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
 layout_mode = 2
 
-[node name="Button3" parent="HUD/LevelUpMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button3" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
 layout_mode = 2
