@@ -1,4 +1,9 @@
 extends Node2D
+class_name GameManager
+
+static var Instance
+
+var hud
 
 signal time_changed(new_time: float)
 signal score_changed(new_score: int)
@@ -19,6 +24,11 @@ var past_sixty = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.Instance = self
+	hud = $Hud/HUD
+	score_changed.connect(hud._on_score_changed)
+	time_changed.connect(hud._on_time_changed)
+	
 	if enemy_1_scene == null:
 		print("ERROR: enemy 1 scene is null!")
 		return
@@ -108,7 +118,6 @@ func check_decrement_spawn_timer(game_time: float):
 		past_sixty = true
 		spawnTimer.wait_time -= 0.5
 	
-
 
 func _on_player_game_over() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

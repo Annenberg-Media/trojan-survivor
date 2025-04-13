@@ -1,7 +1,5 @@
 extends CanvasLayer
 
-@onready var GameManager = $"../../GameManager"
-
 @onready var health_label = $MarginContainer/HBoxContainer/VBoxContainer/Health
 @onready var score_label = $MarginContainer/HBoxContainer/VBoxContainer/Score
 @onready var time_label = $MarginContainer/HBoxContainer/VBoxContainer/Time
@@ -10,8 +8,6 @@ func _ready() -> void:
 	Player.Instance.health_changed.connect(_on_health_changed)
 	# call to update to initial value
 	_on_health_changed(Player.Instance.current_health)
-	GameManager.score_changed.connect(_on_score_changed)
-	GameManager.time_changed.connect(_on_time_changed)
 
 func _on_score_changed(new_score: int) -> void:
 	score_label.text = "Score: %d" % new_score
