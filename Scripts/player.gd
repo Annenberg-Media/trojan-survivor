@@ -29,6 +29,7 @@ var _exp_per_level: int = 1000
 
 signal game_over
 signal health_changed(amount: int)
+signal gained_level
 
 var multi_shot_active: bool = false
 var multi_shot_count: int = 1 
@@ -122,8 +123,8 @@ func add_exp(amount: int) -> void:
 	print("Added " + str(amount) + " EXP. Current: " + str(exp_amount))
 	if exp_amount > _exp_per_level:
 		print("Level up!")
+		on_level_up()
 		exp_amount -= _exp_per_level
 
 func on_level_up() -> void:
-	# choose upgrade option
-	pass
+	gained_level.emit()

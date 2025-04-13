@@ -9,26 +9,34 @@
 [ext_resource type="PackedScene" uid="uid://ctwf6e5igv7xn" path="res://Scenes/multi_shot_pickup.tscn" id="7_syqr4"]
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_gnlcb")
 
-[node name="Player" parent="." instance=ExtResource("1_h47eo")]
-
 [node name="Background" parent="." instance=ExtResource("2_24uq2")]
+process_mode = 1
 show_behind_parent = true
 
+[node name="Player" parent="." instance=ExtResource("1_h47eo")]
+process_mode = 1
+
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+process_mode = 1
 wait_time = 3.0
 autostart = true
 
 [node name="SpeedBoostPickup" parent="." instance=ExtResource("4_m5vnq")]
+process_mode = 1
 position = Vector2(402, 106)
 
 [node name="ExpOrbPickup" parent="." instance=ExtResource("6_gimdb")]
+process_mode = 1
 position = Vector2(-231, 202)
 
 [node name="Hud" parent="." instance=ExtResource("5_blmn6")]
+process_mode = 3
 
 [node name="MultiShotPickup" parent="." instance=ExtResource("7_syqr4")]
+process_mode = 1
 position = Vector2(162, 330)
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]

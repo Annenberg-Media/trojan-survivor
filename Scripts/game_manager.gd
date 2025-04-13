@@ -4,6 +4,7 @@ class_name GameManager
 static var Instance
 
 var hud
+var player: Player
 
 signal time_changed(new_time: float)
 signal score_changed(new_score: int)
@@ -28,6 +29,9 @@ func _ready() -> void:
 	hud = $Hud/HUD
 	score_changed.connect(hud._on_score_changed)
 	time_changed.connect(hud._on_time_changed)
+	
+	player = $Player
+	player.gained_level.connect(_on_player_levelup)
 	
 	if enemy_1_scene == null:
 		print("ERROR: enemy 1 scene is null!")
@@ -125,3 +129,19 @@ func _on_player_game_over() -> void:
 	
 func _go_to_title() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+
+func _on_player_levelup() -> void:
+	# pause game
+	print("PAUSE GAME")
+	get_tree().paused = true
+	
+	# show upgrade menu
+	hud.show_upgrade_menu()
+	
+	# wait for player to choose
+	var selected_index: int = await hud.upgrade_selected
+	print("Selected option index: " + str(selected_index))
+	
+	# resume game
+	print("RESUME GAME")
+	get_tree().paused = false
