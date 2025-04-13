@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://da8p5kmxoju3p"]
+[gd_scene load_steps=4 format=3 uid="uid://da8p5kmxoju3p"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cqfg0"]
+[ext_resource type="PackedScene" uid="uid://c5iy7tha8l1y" path="res://Scenes/upgrade_option_button.tscn" id="2_6m5l7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]
 expand_margin_left = 20.0
@@ -46,3 +47,61 @@ text = "Time: "
 [node name="Score" type="Label" parent="HUD/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Score:"
+
+[node name="LevelUpMenu" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -125.0
+offset_right = 275.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/LevelUpMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/LevelUpMenu/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CHOOSE YOUR UPGRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+layout_mode = 2
+
+[node name="Button2" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+layout_mode = 2
+
+[node name="Button3" parent="HUD/LevelUpMenu/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+layout_mode = 2
