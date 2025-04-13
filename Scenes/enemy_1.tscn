@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://w4x6di3ffmx5"]
+[gd_scene load_steps=5 format=3 uid="uid://w4x6di3ffmx5"]
 
 [ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="1_ehp6q"]
 [ext_resource type="Script" path="res://Scripts/enemy_1.gd" id="1_o6y7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnuf0"]
 size = Vector2(21, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hm34h"]
+size = Vector2(24.2, 14.8)
 
 [node name="Enemy1" type="CharacterBody2D"]
 scale = Vector2(5, 5)
@@ -20,3 +23,19 @@ region_rect = Rect2(0, 0, 31.3333, 33.3333)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_mnuf0")
+
+[node name="PlayerInteraction" type="Area2D" parent="."]
+position = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
+position = Vector2(-0.199999, -0.3)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_hm34h")
+
+[node name="HitTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
+[connection signal="body_exited" from="PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

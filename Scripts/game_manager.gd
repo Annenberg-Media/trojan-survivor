@@ -55,10 +55,12 @@ func spawn_enemy(num: int):
 				var enemy1 = enemy_1_scene.instantiate()
 				enemy1.position = enemy_spawn_position()
 				add_child(enemy1)
+				await get_tree().process_frame
 			2:
 				var enemy2 = enemy_2_scene.instantiate()
 				enemy2.position = enemy_spawn_position()
 				add_child(enemy2)
+				await get_tree().process_frame
 
 
 func enemy_spawn_position():
@@ -117,7 +119,9 @@ func check_decrement_spawn_timer(game_time: float):
 		print("DEBUG: player survived a minute. decrementing timer")
 		past_sixty = true
 		spawnTimer.wait_time -= 0.5
-	
 
 func _on_player_game_over() -> void:
+	call_deferred("_go_to_title")
+	
+func _go_to_title() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
