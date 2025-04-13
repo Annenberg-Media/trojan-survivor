@@ -9,7 +9,7 @@ var _max_health: int = 3
 var health_overload: int = 0
 
 @onready
-var crosshair: Node2D = $Crosshair
+var crosshair: Crosshair = $Crosshair
 var bullet_prefab: PackedScene = preload("uid://pe8pcbqp47dd")
 var shoot_cooldown_timer: Timer
 @export
@@ -44,6 +44,10 @@ func _ready() -> void:
 	shoot_cooldown_timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
 	add_child(shoot_cooldown_timer)
 	
+
+func _process(delta: float) -> void:
+	crosshair.current_angle = (1 - (shoot_cooldown_timer.time_left / shooting_cooldown_amount)) * TAU
+	
 	
 func _physics_process(delta: float) -> void:
 	var move_dir: Vector2 = Vector2.ZERO
@@ -68,7 +72,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot_projectile(global_position.direction_to(crosshair.global_position))
-
 
 func shoot_projectile(dir: Vector2):
 	# shooting is on cooldown
@@ -95,6 +98,7 @@ func shoot_projectile(dir: Vector2):
 		shoot_cooldown_timer.start(shooting_cooldown_amount)
 		
 	shoot_cooldown_timer.start(shooting_cooldown_amount)
+	crosshair.shoot_effect()
 
 func is_player():
 	return true
