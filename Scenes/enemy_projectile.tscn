@@ -16,6 +16,7 @@ fill_to = Vector2(0.834862, 0.224771)
 radius = 26.0
 
 [node name="Projectile" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_0aws0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

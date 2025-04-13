@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var health_label = $MarginContainer/HBoxContainer/VBoxContainer/Health
 @onready var score_label = $MarginContainer/HBoxContainer/VBoxContainer/Score
 @onready var time_label = $MarginContainer/HBoxContainer/VBoxContainer/Time
+@onready var exp_label = $MarginContainer/HBoxContainer/VBoxContainer/EXP
 
 @onready var upgrade_menu = $UpgradeMenu
 @onready var upgrade_option_buttons_container: Control = $UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer
@@ -12,8 +13,10 @@ signal upgrade_selected(index: int)
 
 func _ready() -> void:
 	Player.Instance.health_changed.connect(_on_health_changed)
+	Player.Instance.exp_changed.connect(_on_exp_changed)
 	# call to update to initial value
 	_on_health_changed(Player.Instance.current_health)
+	_on_exp_changed(Player.Instance.exp_amount, Player.Instance.exp_per_level)
 
 func _on_score_changed(new_score: int) -> void:
 	score_label.text = "Score: %d" % new_score
@@ -26,6 +29,9 @@ func _on_time_changed(new_time: float) -> void:
 func _on_health_changed(new_health: int) -> void:
 	health_label.text = "Health: " + str(new_health)
 
+func _on_exp_changed(new_exp: int, max_amount: int) -> void:
+	exp_label.text = "EXP: " + str(new_exp) + "/" + str(max_amount)
+	
 func show_upgrade_menu() -> void:
 	upgrade_menu.visible = true
 	for button: Button in upgrade_option_buttons_container.get_children():

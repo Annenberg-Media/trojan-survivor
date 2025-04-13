@@ -25,10 +25,11 @@ var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 var animation_player: AnimationPlayer = $AnimationPlayer
 
 var exp_amount: int = 0
-var _exp_per_level: int = 1000
+var exp_per_level: int = 1000
 
 signal game_over
 signal health_changed(amount: int)
+signal exp_changed(amount: int)
 signal gained_level
 
 var multi_shot_active: bool = false
@@ -121,10 +122,12 @@ func get_max_health() -> int:
 func add_exp(amount: int) -> void:
 	exp_amount += amount
 	print("Added " + str(amount) + " EXP. Current: " + str(exp_amount))
-	if exp_amount > _exp_per_level:
+	if exp_amount >= exp_per_level:
 		print("Level up!")
 		on_level_up()
-		exp_amount -= _exp_per_level
+		exp_amount -= exp_per_level
+		
+	exp_changed.emit(exp_amount, exp_per_level)
 
 func on_level_up() -> void:
 	gained_level.emit()
