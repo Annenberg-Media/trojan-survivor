@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvnqyi6j8d427"]
+[gd_scene load_steps=8 format=3 uid="uid://dvnqyi6j8d427"]
 
 [ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_h47eo"]
 [ext_resource type="PackedScene" uid="uid://82a6q3j2o85q" path="res://Scenes/background.tscn" id="2_24uq2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4rnd0irrjpw4" path="res://Scenes/speed_boost_pickup.tscn" id="4_m5vnq"]
 [ext_resource type="PackedScene" uid="uid://da8p5kmxoju3p" path="res://Scenes/hud.tscn" id="5_blmn6"]
 [ext_resource type="PackedScene" uid="uid://dlinpehdfxii0" path="res://Scenes/exp_orb_pickup.tscn" id="6_gimdb"]
+[ext_resource type="PackedScene" uid="uid://ctwf6e5igv7xn" path="res://Scenes/multi_shot_pickup.tscn" id="7_syqr4"]
 
 [node name="Game" type="Node2D"]
 
@@ -23,5 +24,8 @@ position = Vector2(402, 106)
 position = Vector2(-231, 202)
 
 [node name="Hud" parent="." instance=ExtResource("5_blmn6")]
+
+[node name="MultiShotPickup" parent="." instance=ExtResource("7_syqr4")]
+position = Vector2(162, 330)
 
 [connection signal="game_over" from="Player" to="GameManager" method="_on_player_game_over"]

@@ -30,6 +30,9 @@ var _exp_per_level: int = 1000
 signal game_over
 signal health_changed(amount: int)
 
+var multi_shot_active: bool = false
+var multi_shot_count: int = 1 
+var multi_shot_spread: float = 20.0
 
 func _ready() -> void:
 	if Player.Instance == null:
@@ -72,13 +75,27 @@ func shoot_projectile(dir: Vector2):
 	if !shoot_cooldown_timer.is_stopped():
 		print("Shooting on cooldown")
 		return
-		
-	var new_projectile: Projectile = bullet_prefab.instantiate()
-	new_projectile.global_position = global_position
-	new_projectile.direction = dir
-	get_tree().root.add_child(new_projectile)
-	shoot_cooldown_timer.start(shooting_cooldown_amount)
 	
+	if multi_shot_active:
+		var half_spread = multi_shot_spread * (multi_shot_count - 1) / 2
+		
+		for i in range(multi_shot_count):
+			var angle_offset = -half_spread + (i * multi_shot_spread)
+			var rotated_dir = dir.rotated(deg_to_rad(angle_offset))
+			
+			var new_projectile = bullet_prefab.instantiate()
+			new_projectile.global_position = global_position
+			new_projectile.direction = rotated_dir
+			get_tree().root.add_child(new_projectile)
+	else:
+		var new_projectile: Projectile = bullet_prefab.instantiate()
+		new_projectile.global_position = global_position
+		new_projectile.direction = dir
+		get_tree().root.add_child(new_projectile)
+		shoot_cooldown_timer.start(shooting_cooldown_amount)
+		
+	shoot_cooldown_timer.start(shooting_cooldown_amount)
+
 func is_player():
 	return true
 
