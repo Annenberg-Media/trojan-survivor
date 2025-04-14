@@ -29,14 +29,23 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("PlaceholderTexture2D_k6nhr")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12

@@ -24,7 +24,9 @@ var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 @onready
 var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export
 var exp_amount: int = 0
+@export
 var exp_per_level: int = 1000
 
 signal game_over

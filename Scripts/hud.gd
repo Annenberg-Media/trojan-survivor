@@ -32,12 +32,22 @@ func _on_health_changed(new_health: int) -> void:
 func _on_exp_changed(new_exp: int, max_amount: int) -> void:
 	exp_label.text = "EXP: " + str(new_exp) + "/" + str(max_amount)
 	
-func show_upgrade_menu() -> void:
+func show_upgrade_menu(options: Array) -> void:
+	if options == null:
+		push_error("upgrade option list null")
+		return
+		
 	upgrade_menu.visible = true
-	for button: Button in upgrade_option_buttons_container.get_children():
-		# connect button to self's function if not connected already
-		if !button.option_selected.is_connected(_on_upgrade_option_button_pressed):
-			button.option_selected.connect(_on_upgrade_option_button_pressed)
+	for i in range(upgrade_option_buttons_container.get_child_count()):
+		var button: UpgradeOptionButton = upgrade_option_buttons_container.get_child(i)
+		if i < options.size():
+			var cur_option: UpgradeData = options[i]
+			button.name_label.text = cur_option.upgrade_name
+			button.description_label.text = cur_option.description
+			button.upgrade_icon.texture = cur_option.icon
+			
+			if !button.option_selected.is_connected(_on_upgrade_option_button_pressed):
+				button.option_selected.connect(_on_upgrade_option_button_pressed)
 
 func _on_upgrade_option_button_pressed(index: int) -> void:
 	upgrade_selected.emit(index)

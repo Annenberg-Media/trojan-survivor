@@ -18,6 +18,7 @@ show_behind_parent = true
 
 [node name="Player" parent="." instance=ExtResource("1_h47eo")]
 process_mode = 1
+exp_amount = 900
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 process_mode = 1

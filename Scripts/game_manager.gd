@@ -23,6 +23,14 @@ var past_twenty = false
 var past_forty = false
 var past_sixty = false
 
+## Upgrade Resources
+var upgrade_list = [
+	preload("res://Scripts/Upgrades/Resources/skateboard.tres")
+]
+var current_upgrade_options = []
+var upgrade_option_count: int = 3
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.Instance = self
@@ -135,12 +143,20 @@ func _on_player_levelup() -> void:
 	print("PAUSE GAME")
 	get_tree().paused = true
 	
+	# generate options
+	current_upgrade_options.clear()
+	for i in range(upgrade_option_count):
+		current_upgrade_options.append(upgrade_list.pick_random())
+	
 	# show upgrade menu
-	hud.show_upgrade_menu()
+	hud.show_upgrade_menu(current_upgrade_options)
 	
 	# wait for player to choose
 	var selected_index: int = await hud.upgrade_selected
-	print("Selected option index: " + str(selected_index))
+	print("Selected option: " + str(current_upgrade_options[selected_index]))
+	
+	# apply upgrade to player
+	current_upgrade_options[selected_index].effect.apply_effect(player)
 	
 	# resume game
 	print("RESUME GAME")
