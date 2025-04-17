@@ -25,7 +25,8 @@ var past_sixty = false
 
 ## Upgrade Resources
 var upgrade_list = [
-	preload("res://Scripts/Upgrades/Resources/skateboard.tres")
+	preload("res://Scripts/Upgrades/Resources/skateboard.tres"),
+	preload("res://Scripts/Upgrades/Resources/MatchaLatte.tres")
 ]
 var current_upgrade_options = []
 var upgrade_option_count: int = 3
@@ -150,6 +151,7 @@ func _on_player_levelup() -> void:
 	
 	# show upgrade menu
 	hud.show_upgrade_menu(current_upgrade_options)
+	print("Options: " + str(current_upgrade_options))
 	
 	# wait for player to choose
 	var selected_index: int = await hud.upgrade_selected

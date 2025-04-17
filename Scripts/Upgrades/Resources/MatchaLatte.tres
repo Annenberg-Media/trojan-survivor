@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=6 format=3 uid="uid://dwe6raacbhbgg"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Effects/attack_speed_increase.gd" id="1_gfix2"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/upgrade_data.gd" id="3_wbxw3"]
+
+[sub_resource type="Resource" id="Resource_qpkbk"]
+script = ExtResource("1_gfix2")
+amount = 0.1
+
+[sub_resource type="Gradient" id="Gradient_rtueh"]
+colors = PackedColorArray(0.372549, 0.717647, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3jagd"]
+gradient = SubResource("Gradient_rtueh")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[resource]
+script = ExtResource("3_wbxw3")
+upgrade_name = "MatchaLatte"
+icon = SubResource("GradientTexture2D_3jagd")
+description = "Throw faster"
+effect = SubResource("Resource_qpkbk")

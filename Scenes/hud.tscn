@@ -103,6 +103,8 @@ layout_mode = 2
 
 [node name="Button2" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
 layout_mode = 2
+index = 1
 
 [node name="Button3" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
 layout_mode = 2
+index = 2
