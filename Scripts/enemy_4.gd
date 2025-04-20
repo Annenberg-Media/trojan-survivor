@@ -25,7 +25,6 @@ func enemy_revert_speed() -> void:
 	move_speed = 50
 
 
-
 func _on_hit_timer_timeout() -> void:
 	attacking = false
 	if player_in_area != null:
@@ -49,6 +48,7 @@ func _on_player_interaction_body_entered(body: Node2D) -> void:
 func _on_player_interaction_body_exited(body: Node2D) -> void:
 	if body == player_in_area:
 		player_in_area = null
+		attacking = false
 		
 func tank_hit() -> bool:
 	if armor:

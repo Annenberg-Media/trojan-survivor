@@ -50,4 +50,5 @@ func _on_hit_timer_timeout() -> void:
 func _on_player_interaction_body_exited(body: Node2D) -> void:
 	if body == player_in_area:
 		player_in_area = null
+		attacking = false
 		
