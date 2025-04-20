@@ -156,3 +156,7 @@ func _on_player_levelup() -> void:
 	# resume game
 	print("RESUME GAME")
 	get_tree().paused = false
+
+
+func _on_ScoreTimer_timeout() -> void:
+	Scoring.add_score(2)
