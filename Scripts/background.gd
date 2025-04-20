@@ -95,7 +95,7 @@ func generate_chunk(chunk_x, chunk_y):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			
-			# Make sure we have valid tiles to choose from
+			# valid tiles
 			if valid_id.size() > 0:
 				# Place a random tile from array
 				var random_index = random.randi() % valid_id.size()
