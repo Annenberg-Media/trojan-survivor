@@ -4,11 +4,13 @@ extends Node2D
 @export var view_distance: int = 10
 @export var chunk_size: int = 20
 @export var tile_size: int = 16
+@export var intial_chunks: int = 4
 
 var valid_id = []
 var generated_chunks = {}
 var random = RandomNumberGenerator.new()
 var last_camera_chunk = Vector2i.ZERO
+var start_generate = []
 
 func _ready():
 	random.randomize()
@@ -18,17 +20,29 @@ func _ready():
 	for x in range(source.get_atlas_grid_size().x):
 		for y in range(source.get_atlas_grid_size().y):
 			if source.has_tile(Vector2i(x, y)): valid_id.append(x)
-		
-	# Create 10 x 10 grid for 100 chunks 
-	for x in range(-5, 5):
-		for y in range(-5, 5): 
-			generate_chunk(x, y)
+	
+	for x in range(-2, 3): 
+		for y in range(-2, 3):
+			start_generate.append(Vector2i(x, y))
+	
+	if start_generate.size() > 0:
+		var pos = start_generate.pop_front()
+		generate_chunk(pos.x, pos.y)
 
 func _process(_delta):
 	var camera = get_viewport().get_camera_2d()
 	
-	# Update the chunks around camera
+	process_chunk_queue()
+
 	update_chunks_around_camera(camera.global_position)
+
+func process_chunk_queue():
+	var chunks_this_frame = min(intial_chunks, start_generate.size())
+	
+	for i in range(chunks_this_frame):
+		if start_generate.size() > 0:
+			var pos = start_generate.pop_front()
+			generate_chunk(pos.x, pos.y)
 
 func update_chunks_around_camera(pos):
 	var chunk_x = int(pos.x / (chunk_size * tile_size))
@@ -41,10 +55,17 @@ func update_chunks_around_camera(pos):
 	
 	last_camera_chunk = current_chunk
 	
-	# Get chunk from view distance
+	# Queue chunks for generation within view distance
 	for x in range(chunk_x - view_distance, chunk_x + view_distance + 1):
 		for y in range(chunk_y - view_distance, chunk_y + view_distance + 1):
-			generate_chunk(x, y)
+			var chunk_key = str(x) + "," + str(y)
+			if not generated_chunks.has(chunk_key) and not Vector2i(x, y) in start_generate:
+				start_generate.append(Vector2i(x, y))
+	
+	# Prioritize chunks closer to the camera
+	start_generate.sort_custom(func(a, b): 
+		return a.distance_squared_to(current_chunk) < b.distance_squared_to(current_chunk)
+	)
 	
 	# Deload chunks when too far away 
 	var chunks_to_remove = []
