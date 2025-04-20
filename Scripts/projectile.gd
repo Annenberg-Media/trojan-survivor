@@ -27,5 +27,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
+		if body.has_method("tank_hit"):
+			if body.tank_hit():
+				queue_free()
+				return
 		body.on_death()
 		queue_free()

@@ -14,7 +14,8 @@ signal score_changed(new_score: int)
 var enemy_list = [
 	preload("res://Scenes/enemy_1.tscn"),
 	preload("res://Scenes/enemy_2.tscn"),
-	preload("res://Scenes/enemy_3.tscn")
+	preload("res://Scenes/enemy_3.tscn"),
+	preload("res://Scenes/enemy_4.tscn")
 ]
 
 var rng = RandomNumberGenerator.new()
@@ -59,7 +60,7 @@ func _process(delta: float) -> void:
 	
 func spawn_enemy(num: int):
 	for i in range(num):
-		var rand_enemy_type = randi_range(1, 3)
+		var rand_enemy_type = randi_range(1, 4)
 		print("SPAWNING: Type ", rand_enemy_type)
 		
 		var new_enemy = enemy_list[rand_enemy_type-1].instantiate()

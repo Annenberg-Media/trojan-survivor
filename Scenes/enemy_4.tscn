@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://buqk6wmqj2ef1"]
+
+[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="1_jmbx6"]
+[ext_resource type="Script" path="res://Scripts/enemy_4.gd" id="1_p4mwp"]
+[ext_resource type="Texture2D" uid="uid://keaqp1lba5fx" path="res://Resources/circle.webp" id="2_wlj7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx20v"]
+size = Vector2(20, 11.8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v01fu"]
+size = Vector2(22.4, 13.8)
+
+[node name="Enemy4" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_p4mwp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_jmbx6")
+region_enabled = true
+region_rect = Rect2(192, 16, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.54747e-14, 2.3)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jx20v")
+
+[node name="armor" type="Sprite2D" parent="."]
+position = Vector2(3.72529e-09, 2.2)
+scale = Vector2(0.0229286, 0.0168061)
+texture = ExtResource("2_wlj7d")
+
+[node name="HitTimer" type="Timer" parent="."]
+
+[node name="PlayerInteraction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
+position = Vector2(0.199999, 2.1)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_v01fu")
+
+[connection signal="body_entered" from="PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
+[connection signal="body_exited" from="PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
