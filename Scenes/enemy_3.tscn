@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bphlwuqnefjal"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_3.gd" id="1_7260q"]
+[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_p8t52"]
+[ext_resource type="Texture2D" uid="uid://keaqp1lba5fx" path="res://Resources/circle.webp" id="3_62etg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsqbj"]
+size = Vector2(10, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_of7tq"]
+radius = 72.0
+
+[node name="Enemy3" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_7260q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(3.2, 0)
+rotation = 1.5708
+texture = ExtResource("2_p8t52")
+region_enabled = true
+region_rect = Rect2(0, 16, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tsqbj")
+
+[node name="BuffArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuffArea"]
+shape = SubResource("CircleShape2D_of7tq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.713726, 0, 0.239216, 0.305882)
+scale = Vector2(0.147, 0.147)
+texture = ExtResource("3_62etg")
+
+[connection signal="body_entered" from="BuffArea" to="." method="_on_buff_area_body_entered"]
+[connection signal="body_exited" from="BuffArea" to="." method="_on_buff_area_body_exited"]

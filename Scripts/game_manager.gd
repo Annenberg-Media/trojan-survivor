@@ -11,8 +11,12 @@ signal score_changed(new_score: int)
 
 @export var spawn_interval: float = 2.0
 
-var enemy_1_scene = preload("res://Scenes/enemy_1.tscn")
-var enemy_2_scene = preload("res://Scenes/enemy_2.tscn")
+var enemy_list = [
+	preload("res://Scenes/enemy_1.tscn"),
+	preload("res://Scenes/enemy_2.tscn"),
+	preload("res://Scenes/enemy_3.tscn")
+]
+
 var rng = RandomNumberGenerator.new()
 @onready var spawnTimer = $EnemySpawnTimer
 
@@ -42,12 +46,6 @@ func _ready() -> void:
 	player = $Player
 	player.gained_level.connect(_on_player_levelup)
 	
-	if enemy_1_scene == null:
-		print("ERROR: enemy 1 scene is null!")
-		return
-	elif enemy_2_scene == null:
-		print("ERROR: enemy 2 scene is null!")
-		return
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,19 +59,13 @@ func _process(delta: float) -> void:
 	
 func spawn_enemy(num: int):
 	for i in range(num):
-		var rand_enemy_type = randi_range(1, 2)
+		var rand_enemy_type = randi_range(1, 3)
 		print("SPAWNING: Type ", rand_enemy_type)
-		match rand_enemy_type:
-			1:
-				var enemy1 = enemy_1_scene.instantiate()
-				enemy1.position = enemy_spawn_position()
-				add_child(enemy1)
-				await get_tree().process_frame
-			2:
-				var enemy2 = enemy_2_scene.instantiate()
-				enemy2.position = enemy_spawn_position()
-				add_child(enemy2)
-				await get_tree().process_frame
+		
+		var new_enemy = enemy_list[rand_enemy_type-1].instantiate()
+		new_enemy.position = enemy_spawn_position()
+		add_child(new_enemy)
+		await get_tree().process_frame
 
 
 func enemy_spawn_position():
@@ -110,7 +102,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var num_enemies = randi_range(1, 3)
 	print("Timer end; spawning ", num_enemies, " enemies!")
 	spawn_enemy(num_enemies)
-	print("Spawning more enemies in: ", spawnTimer.wait_time, " seconds")
+	# print("Spawning more enemies in: ", spawnTimer.wait_time, " seconds")
 	
 	
 func add_score(points: int) -> void:
