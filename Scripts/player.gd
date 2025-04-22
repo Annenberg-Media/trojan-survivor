@@ -9,6 +9,11 @@ var _max_health: int = 3
 var health_overload: int = 0
 
 @onready
+var invincible_timer: Timer = $InvincibleTimer
+@export
+var invinsible_time: float = 0.5
+
+@onready
 var crosshair: Crosshair = $Crosshair
 var bullet_prefab: PackedScene = preload("uid://pe8pcbqp47dd")
 var shoot_cooldown_timer: Timer
@@ -38,6 +43,10 @@ var multi_shot_active: bool = false
 var multi_shot_count: int = 1 
 var multi_shot_spread: float = 20.0
 
+@export
+var debug_invincible: bool = false
+
+
 func _ready() -> void:
 	if Player.Instance == null:
 		Player.Instance = self
@@ -52,6 +61,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	crosshair.current_angle = (1 - (shoot_cooldown_timer.time_left / shooting_cooldown_amount)) * TAU
 	
+	if !invincible_timer.is_stopped():
+		modulate.a = 0.4
+	else:
+		modulate.a = 1
 	
 func _physics_process(delta: float) -> void:
 	var move_dir: Vector2 = Vector2.ZERO
@@ -108,9 +121,16 @@ func is_player():
 	return true
 
 func receive_hit(amount: int = 1):
+	if debug_invincible:
+		return
+		
+	if !invincible_timer.is_stopped():
+		return
+		
 	current_health -= amount
 	health_changed.emit(current_health)
 	animation_player.play("hit_blink")
+	invincible_timer.start(invinsible_time)
 	
 	# if there is more health in our overload
 	if health_overload > 0:
