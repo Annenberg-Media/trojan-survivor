@@ -22,7 +22,10 @@ var shooting_cooldown_amount: float = 0.2
 
 @export
 ## player's movement speed in pixels per second
-var movement_speed: float = 200
+var movement_speed: float = 200:
+	set(value):
+		movement_speed = clamp(value, 0, 5000)
+		
 @onready
 var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 

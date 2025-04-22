@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://w4x6di3ffmx5"]
+[gd_scene load_steps=5 format=3 uid="uid://d4datena32wqo"]
 
-[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="1_ehp6q"]
-[ext_resource type="Script" uid="uid://b8gxbvlw4sys4" path="res://Scripts/enemy_1.gd" id="1_o6y7e"]
+[ext_resource type="Script" uid="uid://dkj0pqx68oml0" path="res://Scripts/enemy_slug.gd" id="1_afe0e"]
+[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_31iwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnuf0"]
 size = Vector2(21, 11)
@@ -9,23 +9,26 @@ size = Vector2(21, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm34h"]
 size = Vector2(24.2, 14.8)
 
-[node name="Enemy1" type="CharacterBody2D"]
+[node name="EnemySlug" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
-script = ExtResource("1_o6y7e")
+script = ExtResource("1_afe0e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 0, 1)
 texture_filter = 1
 position = Vector2(0, -11)
-texture = ExtResource("1_ehp6q")
+texture = ExtResource("2_31iwv")
 region_enabled = true
 region_rect = Rect2(0, 0, 31.3333, 33.3333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_mnuf0")
 
 [node name="PlayerInteraction" type="Area2D" parent="."]
+visible = false
 position = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
@@ -36,6 +39,10 @@ shape = SubResource("RectangleShape2D_hm34h")
 one_shot = true
 autostart = true
 
+[node name="SlimeDropTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="body_entered" from="PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
 [connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]
+[connection signal="timeout" from="SlimeDropTimer" to="." method="_on_slime_drop_timer_timeout"]

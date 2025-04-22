@@ -1,4 +1,5 @@
 extends Enemy
+class_name MeleeEnemy
 
 @onready var player = get_tree().get_current_scene().get_node("Player")
 var attacking = false

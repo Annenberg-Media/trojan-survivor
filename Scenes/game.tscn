@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvnqyi6j8d427"]
+[gd_scene load_steps=10 format=3 uid="uid://dvnqyi6j8d427"]
 
 [ext_resource type="Script" uid="uid://2oudywmyvw1o" path="res://Scripts/game_manager.gd" id="1_gnlcb"]
 [ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_h47eo"]
@@ -7,15 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://da8p5kmxoju3p" path="res://Scenes/hud.tscn" id="5_blmn6"]
 [ext_resource type="PackedScene" uid="uid://dlinpehdfxii0" path="res://Scenes/exp_orb_pickup.tscn" id="6_gimdb"]
 [ext_resource type="PackedScene" uid="uid://ctwf6e5igv7xn" path="res://Scenes/multi_shot_pickup.tscn" id="7_syqr4"]
+[ext_resource type="PackedScene" uid="uid://cjpql1acgoyh0" path="res://Scenes/slime_field.tscn" id="8_v158k"]
+[ext_resource type="PackedScene" uid="uid://d4datena32wqo" path="res://Scenes/enemy_slug.tscn" id="9_h4fw4"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_gnlcb")
-spawn_interval = null
 
 [node name="Background" parent="." instance=ExtResource("2_24uq2")]
 process_mode = 1
 show_behind_parent = true
+
+[node name="SlimeFields" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_h47eo")]
 process_mode = 1
@@ -44,6 +47,12 @@ position = Vector2(162, 330)
 [node name="ScoreTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="SlowingField" parent="." instance=ExtResource("8_v158k")]
+position = Vector2(425, -143)
+
+[node name="EnemySlug" parent="." instance=ExtResource("9_h4fw4")]
+position = Vector2(929, -479)
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
