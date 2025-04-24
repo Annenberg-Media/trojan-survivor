@@ -6,6 +6,9 @@ static var Instance
 var hud
 var player: Player
 
+@onready
+var projectiles_node: Node2D = $Projectiles
+
 signal time_changed(new_time: float)
 signal score_changed(new_score: int)
 
@@ -61,6 +64,7 @@ func _process(delta: float) -> void:
 		
 	game_time += delta
 	emit_signal("time_changed", game_time)
+	
 	
 func spawn_enemy(num: int):
 	for i in range(num):

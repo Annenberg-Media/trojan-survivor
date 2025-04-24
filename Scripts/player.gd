@@ -109,12 +109,12 @@ func shoot_projectile(dir: Vector2):
 			var new_projectile = bullet_prefab.instantiate()
 			new_projectile.global_position = global_position
 			new_projectile.direction = rotated_dir
-			GameManager.Instance.add_child(new_projectile)
+			GameManager.Instance.projectiles_node.add_child(new_projectile)
 	else:
 		var new_projectile: Projectile = bullet_prefab.instantiate()
 		new_projectile.global_position = global_position
 		new_projectile.direction = dir
-		GameManager.Instance.add_child(new_projectile)
+		GameManager.Instance.projectiles_node.add_child(new_projectile)
 		shoot_cooldown_timer.start(shooting_cooldown_amount)
 		
 	shoot_cooldown_timer.start(shooting_cooldown_amount)

@@ -23,7 +23,7 @@ func shoot_at_player(dir: Vector2):
 	var new_bullet = enemy_bullet.instantiate()
 	new_bullet.position = global_position + (player.global_position - global_position).normalized()*90
 	new_bullet.direction = (dir - global_position).normalized()
-	get_tree().root.add_child(new_bullet)
+	GameManager.Instance.projectiles_node.add_child(new_bullet)
 	shoot_cooldown_timer.start()
 	
 	
