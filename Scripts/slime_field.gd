@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 	
 	#print("active count: " + str(SlowingField.active_instances.size()))
-	print(Player.Instance.movement_speed)
+	#print(Player.Instance.movement_speed)
 	
 	
 func _on_body_entered(body: Node2D) -> void:

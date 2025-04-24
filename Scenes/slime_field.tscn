@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjpql1acgoyh0"]
 
-[ext_resource type="Script" uid="uid://birbnqnv55ps6" path="res://Scripts/slime_field.gd" id="1_ros6a"]
+[ext_resource type="Script" uid="uid://dqm3xysbnmbmm" path="res://Scripts/slime_field.gd" id="1_ros6a"]
 [ext_resource type="Texture2D" uid="uid://j2lcc2dgl1di" path="res://Resources/splat20.png" id="2_yhpd2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_me7iu"]
