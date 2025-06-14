@@ -6,6 +6,9 @@ var drops = [
 	"res://Scenes/multi_shot_pickup.tscn"
 ]
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	
 func on_death() -> void:
 	# drop pickup
 	var new_exp_pickup: Node2D

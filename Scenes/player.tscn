@@ -1,9 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://dqcvgxv13m12a"]
 
 [ext_resource type="Texture2D" uid="uid://wigi3jjsakjs" path="res://icon.svg" id="1_0v1i3"]
-[ext_resource type="Script" uid="uid://bh2mongr2hqof" path="res://Scripts/player.gd" id="1_px5vt"]
-[ext_resource type="Shader" uid="uid://dfnhsiac2xmht" path="res://Resources/player_hit_blink.gdshader" id="2_r52y1"]
-[ext_resource type="Script" uid="uid://inlrtrqflbdw" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
+[ext_resource type="Script" uid="uid://bf2j0m8o5y36l" path="res://Scripts/player.gd" id="1_px5vt"]
+[ext_resource type="Shader" uid="uid://de4wcdo65oen3" path="res://Resources/player_hit_blink.gdshader" id="2_r52y1"]
+[ext_resource type="Script" uid="uid://bnbpu37noqk0r" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
 
 [sub_resource type="Gradient" id="Gradient_4bkvw"]
 interpolation_mode = 1
