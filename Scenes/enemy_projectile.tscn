@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1csjynyya272"]
 
-[ext_resource type="Script" uid="uid://c3t1ufypyq7o" path="res://Scripts/enemy_projectile.gd" id="1_0aws0"]
+[ext_resource type="Script" uid="uid://nwqtea3nj36a" path="res://Scripts/enemy_projectile.gd" id="1_0aws0"]
 
 [sub_resource type="Gradient" id="Gradient_aodng"]
 interpolation_mode = 1

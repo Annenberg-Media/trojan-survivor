@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciupfrmfevhxy"]
+
+[ext_resource type="Script" uid="uid://bnwusvwx88qxm" path="res://Scripts/exploding_coin.gd" id="1_fajdk"]
+[ext_resource type="Texture2D" uid="uid://83ifnmhvk6ec" path="res://Resources/exploding_coin.png" id="1_iekim"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fajdk"]
+radius = 46.0977
+
+[node name="ExplodingCoin" type="Area2D"]
+script = ExtResource("1_fajdk")
+explosion_damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.999954, -2.00005)
+scale = Vector2(0.15, 0.146)
+texture = ExtResource("1_iekim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+shape = SubResource("CircleShape2D_fajdk")
+
+[node name="ExplosionTimer" type="Timer" parent="."]

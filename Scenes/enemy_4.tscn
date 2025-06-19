@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://buqk6wmqj2ef1"]
 
 [ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="1_jmbx6"]
-[ext_resource type="Script" path="res://Scripts/enemy_4.gd" id="1_p4mwp"]
+[ext_resource type="Script" uid="uid://bx4yjdv3tcrvj" path="res://Scripts/enemy_4.gd" id="1_p4mwp"]
 [ext_resource type="Texture2D" uid="uid://keaqp1lba5fx" path="res://Resources/circle.webp" id="2_wlj7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx20v"]

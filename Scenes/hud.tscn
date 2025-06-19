@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://da8p5kmxoju3p"]
 
-[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cqfg0"]
+[ext_resource type="Script" uid="uid://bb1rhktx4edm8" path="res://Scripts/hud.gd" id="1_cqfg0"]
 [ext_resource type="PackedScene" uid="uid://c5iy7tha8l1y" path="res://Scenes/upgrade_option_button.tscn" id="2_6m5l7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]

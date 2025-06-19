@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://82a6q3j2o85q"]
 
-[ext_resource type="Script" path="res://Scripts/background.gd" id="1_7i6in"]
+[ext_resource type="Script" uid="uid://lb4jexrdhjer" path="res://Scripts/background.gd" id="1_7i6in"]
 [ext_resource type="TileSet" uid="uid://c36dynfl5rskg" path="res://Resources/background_tileset.tres" id="1_y7r60"]
 
 [node name="Background" type="Node2D"]

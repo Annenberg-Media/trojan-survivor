@@ -13,7 +13,6 @@
 [node name="Game" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_gnlcb")
-spawn_interval = null
 
 [node name="Background" parent="." instance=ExtResource("2_24uq2")]
 process_mode = 1

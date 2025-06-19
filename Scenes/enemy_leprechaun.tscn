@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbtd2l4n1kvlm"]
+
+[ext_resource type="Script" uid="uid://dua4tw0tsc82s" path="res://Scripts/enemy_leprechaun.gd" id="1_w5akc"]
+[ext_resource type="Texture2D" uid="uid://sc4wxqapxhu7" path="res://Resources/leprechaun.png" id="2_a8bo8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5wo0"]
+size = Vector2(74, 105)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxgfu"]
+radius = 100.245
+
+[node name="EnemyLeprechaun" type="CharacterBody2D"]
+script = ExtResource("1_w5akc")
+metadata/_custom_type_script = "uid://bpkeh83fuvtxb"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.252, 0.244)
+texture = ExtResource("2_a8bo8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -8)
+shape = SubResource("RectangleShape2D_t5wo0")
+
+[node name="PlayerInteraction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_nxgfu")
+one_way_collision_margin = 0.0
+
+[node name="HitTimer" type="Timer" parent="."]
+
+[node name="DanceTimer" type="Timer" parent="."]
+
+[node name="CoinDropTimer" type="Timer" parent="."]

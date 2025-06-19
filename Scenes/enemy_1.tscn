@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://w4x6di3ffmx5"]
 
 [ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="1_ehp6q"]
-[ext_resource type="Script" uid="uid://b8gxbvlw4sys4" path="res://Scripts/enemy_1.gd" id="1_o6y7e"]
+[ext_resource type="Script" uid="uid://c6mlgswwnvxst" path="res://Scripts/enemy_1.gd" id="1_o6y7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnuf0"]
 size = Vector2(21, 11)
