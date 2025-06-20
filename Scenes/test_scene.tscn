@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxuugahrwfut5"]
+
+[ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_b6uvr"]
+[ext_resource type="PackedScene" uid="uid://bvqp25ow2gi1n" path="res://Scenes/enemy_beaver.tscn" id="2_4jekb"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnemyBeaver" parent="." instance=ExtResource("2_4jekb")]
+position = Vector2(241, -20)
+
+[node name="Player" parent="." instance=ExtResource("1_b6uvr")]
