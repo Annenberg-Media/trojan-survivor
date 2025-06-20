@@ -68,27 +68,18 @@ func _process(delta: float) -> void:
 		modulate.a = 0.4
 	else:
 		modulate.a = 1
+
+func get_input() -> void:
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")	
+	velocity = input_dir * movement_speed
+	return
 	
 func _physics_process(delta: float) -> void:
-	var move_dir: Vector2 = Vector2.ZERO
-	# W - up
-	if Input.is_action_pressed("move_up"):
-		move_dir += Vector2.UP
-	# A - left
-	if Input.is_action_pressed("move_left"):
-		move_dir += Vector2.LEFT
-	# S - down
-	if Input.is_action_pressed("move_down"):
-		move_dir += Vector2.DOWN
-	# D - right
-	if Input.is_action_pressed("move_right"):
-		move_dir += Vector2.RIGHT
-	move_dir = move_dir.normalized()
-	
-	global_position += move_dir * (movement_speed * delta)
+	get_input()
+	move_and_collide(velocity * delta)
 	
 	# emit movement_dust_particle if we are moving
-	movement_dust_particle.emitting = move_dir != Vector2.ZERO
+	movement_dust_particle.emitting = velocity.normalized() != Vector2.ZERO
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot_projectile(global_position.direction_to(crosshair.global_position))
