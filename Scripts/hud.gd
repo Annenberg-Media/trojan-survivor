@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var health_label = $MarginContainer/HBoxContainer/VBoxContainer/Health
+@onready var health_display: HealthDisplay = %HealthDisplay
+
 @onready var score_label = $MarginContainer/HBoxContainer/VBoxContainer/Score
 @onready var time_label = $MarginContainer/HBoxContainer/VBoxContainer/Time
 @onready var exp_label = $MarginContainer/HBoxContainer/VBoxContainer/EXP
@@ -28,6 +30,7 @@ func _on_time_changed(new_time: float) -> void:
 
 func _on_health_changed(new_health: int) -> void:
 	health_label.text = "Health: " + str(new_health)
+	health_display.set_count(new_health)
 
 func _on_exp_changed(new_exp: int, max_amount: int) -> void:
 	exp_label.text = "EXP: " + str(new_exp) + "/" + str(max_amount)
