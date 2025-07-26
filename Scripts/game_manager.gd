@@ -21,7 +21,8 @@ var enemy_list = [
 	preload("res://Scenes/enemy_4.tscn"),
 	preload("res://Scenes/enemy_slug.tscn"),
 	preload("res://Scenes/enemy_leprechaun.tscn"),
-	preload("res://Scenes/enemy_beaver.tscn")
+	preload("res://Scenes/enemy_beaver.tscn"),
+	preload("res://Scenes/enemy_tiger.tscn")
 ]
 
 @onready
