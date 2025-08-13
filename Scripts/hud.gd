@@ -9,6 +9,8 @@ extends CanvasLayer
 @onready var exp_bar: EXPBar = %EXPBar
 @onready var current_time_label: Label = %TimeLabel
 
+@onready var score_display: Label = %ScoreDisplay
+
 @onready var upgrade_menu = $UpgradeMenu
 @onready var upgrade_option_buttons_container: Control = $UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer
 
@@ -21,9 +23,11 @@ func _ready() -> void:
 	# call to update to initial value
 	_on_health_changed(Player.Instance.current_health)
 	_on_exp_changed(Player.Instance.exp_amount, Player.Instance.exp_per_level)
+	_on_score_changed(0)
 
 func _on_score_changed(new_score: int) -> void:
 	score_label.text = "Score: %d" % new_score
+	score_display.text = "Score: %d" % new_score
 
 func _on_time_changed(new_time: float) -> void:
 	var minutes = floor(new_time / 60)

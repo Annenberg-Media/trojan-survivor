@@ -120,7 +120,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	
 func add_score(points: int) -> void:
 	score += points
-	emit_signal("score_changed", score)
+	score_changed.emit(score)
 	
 func check_decrement_spawn_timer(game_time: float):
 	if game_time >= 20 and not past_twenty:

@@ -20,5 +20,6 @@ func on_death() -> void:
 	new_exp_pickup.global_position = global_position
 	GameManager.Instance.call_deferred("add_child", new_exp_pickup)
 	Scoring.add_score(5)
+	GameManager.Instance.add_score(5)
 	# delete unit
 	queue_free()
