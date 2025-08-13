@@ -135,7 +135,13 @@ func receive_hit(amount: int = 1):
 	elif current_health <= 0:
 		print("PLAYER HEALTH IS ZERO")
 		game_over.emit()
-		
+
+func heal_health(amount: int) -> void:
+	current_health += amount
+	current_health = min(current_health, _max_health)
+	health_changed.emit(current_health)
+	print("Player health healed")
+	
 func get_max_health() -> int:
 	return _max_health
 

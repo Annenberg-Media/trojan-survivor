@@ -41,7 +41,8 @@ var past_sixty = false
 ## Upgrade Resources
 var upgrade_list = [
 	preload("res://Scripts/Upgrades/Resources/skateboard.tres"),
-	preload("res://Scripts/Upgrades/Resources/MatchaLatte.tres")
+	preload("res://Scripts/Upgrades/Resources/MatchaLatte.tres"),
+	preload("res://Scripts/Upgrades/Resources/Heal.tres")
 ]
 var current_upgrade_options = []
 var upgrade_option_count: int = 3

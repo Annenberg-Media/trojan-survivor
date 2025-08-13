@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://da8p5kmxoju3p"]
 
-[ext_resource type="Script" uid="uid://qslexg1hmve5" path="res://Scripts/hud.gd" id="1_cqfg0"]
+[ext_resource type="Script" uid="uid://ba0exal2x4eu8" path="res://Scripts/hud.gd" id="1_cqfg0"]
 [ext_resource type="PackedScene" uid="uid://c5iy7tha8l1y" path="res://Scenes/upgrade_option_button.tscn" id="2_6m5l7"]
-[ext_resource type="Script" uid="uid://ccdpgrcla0hyq" path="res://Scenes/health_display.gd" id="3_6fbih"]
+[ext_resource type="Script" uid="uid://bs5vjtj8i2ntt" path="res://Scenes/health_display.gd" id="3_6fbih"]
 [ext_resource type="Texture2D" uid="uid://crdmtsnpare5a" path="res://Resources/health_icon.png" id="4_t1xeu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]
@@ -114,6 +114,7 @@ index = 2
 [node name="HealthDisplay" type="Control" parent="HUD"]
 unique_name_in_owner = true
 layout_mode = 3
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_top = 20.0
@@ -149,22 +150,6 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="HealthIcon3" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
-self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
-layout_mode = 2
-texture = ExtResource("4_t1xeu")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="HealthIcon4" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
-visible = false
-self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
-layout_mode = 2
-texture = ExtResource("4_t1xeu")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="HealthIcon5" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
-visible = false
 self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
 layout_mode = 2
 texture = ExtResource("4_t1xeu")
