@@ -1,13 +1,13 @@
 extends CanvasLayer
 
-@onready var health_label = $MarginContainer/HBoxContainer/VBoxContainer/Health
+@onready var health_label = $DebugPanel/HBoxContainer/VBoxContainer/Health
 @onready var health_display: HealthDisplay = %HealthDisplay
-
-@onready var score_label = $MarginContainer/HBoxContainer/VBoxContainer/Score
-@onready var time_label = $MarginContainer/HBoxContainer/VBoxContainer/Time
-@onready var exp_label = $MarginContainer/HBoxContainer/VBoxContainer/EXP
+@onready var score_label = $DebugPanel/HBoxContainer/VBoxContainer/Score
+@onready var time_label = $DebugPanel/HBoxContainer/VBoxContainer/Time
+@onready var exp_label = $DebugPanel/HBoxContainer/VBoxContainer/EXP
 
 @onready var exp_bar: EXPBar = %EXPBar
+@onready var current_time_label: Label = %TimeLabel
 
 @onready var upgrade_menu = $UpgradeMenu
 @onready var upgrade_option_buttons_container: Control = $UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer
@@ -29,6 +29,7 @@ func _on_time_changed(new_time: float) -> void:
 	var minutes = floor(new_time / 60)
 	var seconds = fmod(new_time, 60)
 	time_label.text = "Time: %02d:%02d" % [minutes, seconds]
+	current_time_label.text = "%02d:%02d" % [minutes, seconds]
 
 func _on_health_changed(new_health: int) -> void:
 	health_label.text = "Health: " + str(new_health)

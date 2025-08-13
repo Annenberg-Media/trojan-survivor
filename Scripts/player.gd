@@ -156,6 +156,7 @@ func add_exp(amount: int) -> void:
 
 func consume_exp() -> void:
 	exp_amount -= exp_per_level
+	exp_amount = max(exp_amount, 0)
 	exp_changed.emit(exp_amount, exp_per_level)
 	
 func on_level_up() -> void:
