@@ -164,6 +164,7 @@ func _on_player_levelup() -> void:
 	
 	# apply upgrade to player
 	current_upgrade_options[selected_index].effect.apply_effect(player)
+	player.consume_exp()
 	
 	# resume game
 	print("RESUME GAME")
