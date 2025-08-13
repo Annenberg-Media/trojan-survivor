@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var time_label = $MarginContainer/HBoxContainer/VBoxContainer/Time
 @onready var exp_label = $MarginContainer/HBoxContainer/VBoxContainer/EXP
 
+@onready var exp_bar: EXPBar = %EXPBar
+
 @onready var upgrade_menu = $UpgradeMenu
 @onready var upgrade_option_buttons_container: Control = $UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer
 
@@ -34,6 +36,7 @@ func _on_health_changed(new_health: int) -> void:
 
 func _on_exp_changed(new_exp: int, max_amount: int) -> void:
 	exp_label.text = "EXP: " + str(new_exp) + "/" + str(max_amount)
+	exp_bar.set_exp_amount(new_exp, max_amount)
 	
 func show_upgrade_menu(options: Array) -> void:
 	if options == null:

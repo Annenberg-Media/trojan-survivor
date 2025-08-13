@@ -22,6 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 		target = body
 		$Sprite2D.visible = false
 		effect_enter()
+		queue_free()
 
 
 func _on_duration_timer_timeout() -> void:

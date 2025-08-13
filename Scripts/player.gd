@@ -151,9 +151,12 @@ func add_exp(amount: int) -> void:
 	if exp_amount >= exp_per_level:
 		print("Level up!")
 		on_level_up()
-		exp_amount -= exp_per_level
 		
 	exp_changed.emit(exp_amount, exp_per_level)
 
+func consume_exp() -> void:
+	exp_amount -= exp_per_level
+	exp_changed.emit(exp_amount, exp_per_level)
+	
 func on_level_up() -> void:
 	gained_level.emit()
