@@ -18,11 +18,17 @@ func _physics_process(_delta: float) -> void:
 	elif player and (player.position - position).length() <= 400 and shoot_cooldown_timer.is_stopped():
 		shoot_at_player(player.global_position)
 		
+	$AnimatedSprite2D.play("move")
+	if player.global_position.x > global_position.x:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 		
 func shoot_at_player(dir: Vector2):
 	var new_bullet = enemy_bullet.instantiate()
 	new_bullet.position = global_position + (player.global_position - global_position).normalized()*90
 	new_bullet.direction = (dir - global_position).normalized()
+	new_bullet.rotation = new_bullet.direction.angle() - PI/2
 	GameManager.Instance.projectiles_node.add_child(new_bullet)
 	shoot_cooldown_timer.start()
 	

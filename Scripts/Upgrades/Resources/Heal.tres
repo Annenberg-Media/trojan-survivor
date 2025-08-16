@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" load_steps=6 format=3 uid="uid://cuvekq7skdknx"]
 
-[ext_resource type="Script" uid="uid://dqi84r2svabu7" path="res://Scripts/Upgrades/Effects/heal_effect.gd" id="1_86hkx"]
-[ext_resource type="Script" uid="uid://dek3h4flvgvo" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_15hb5"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/Effects/heal_effect.gd" id="1_86hkx"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_15hb5"]
 
 [sub_resource type="Resource" id="Resource_15hb5"]
 script = ExtResource("1_86hkx")

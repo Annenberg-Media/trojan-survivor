@@ -5,7 +5,7 @@ class_name MeleeEnemy
 var attacking = false
 var player_in_area = null
 var move_speed = 85
-
+@onready var anim_sprite := get_node_or_null("AnimatedSprite2D")
 
 func _ready() -> void:
 	pass
@@ -14,8 +14,16 @@ func _physics_process(_delta: float) -> void:
 	if player and not attacking:
 		var direction = (player.position - position).normalized()
 		velocity = direction * move_speed
+		if anim_sprite:
+			anim_sprite.play("move")
+			if player.global_position.x > global_position.x:
+				anim_sprite.flip_h = true
+			else:
+				anim_sprite.flip_h = false
 	elif attacking:
 		velocity = Vector2.ZERO
+		if anim_sprite:
+			anim_sprite.play("attack")
 		
 	move_and_slide()
 		
