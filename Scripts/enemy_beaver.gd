@@ -9,6 +9,7 @@ Behavior:
 
 @onready var player = get_tree().get_current_scene().get_node("Player")
 @onready var timer = $DamTimer
+@onready var beaver_sprite := get_node_or_null("AnimatedSprite2D")
 var wood_dam = preload("res://Scenes/wood_dam.tscn")
 var direction: Vector2
 var movespeed = 150
@@ -20,13 +21,23 @@ func _physics_process(delta: float) -> void:
 	if distance_from_player > 400:
 		timer.stop()
 		direction = (player.position - position).normalized()
+		beaver_sprite.play("walk")
+		if player.global_position.x > global_position.x:
+			beaver_sprite.flip_h = true
+		else:
+			beaver_sprite.flip_h = false
 	elif distance_from_player <= 400 and distance_from_player >= 300:
 		if timer.is_stopped():
 			timer.start()
 		direction = Vector2(-1*(player.position - position).y, (player.position - position).x).normalized()
+		beaver_sprite.flip_h = false
 	else:
 		timer.stop()
 		direction = (position - player.position).normalized()
+		if player.global_position.x < global_position.x:
+			beaver_sprite.flip_h = true
+		else:
+			beaver_sprite.flip_h = false
 		
 	velocity = direction * movespeed
 	move_and_slide()

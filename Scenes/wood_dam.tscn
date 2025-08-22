@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dp4a3bg6gvvks"]
 
-[ext_resource type="Texture2D" uid="uid://bdna22qh5b2xa" path="res://Resources/Wood_Block.webp" id="1_wmube"]
+[ext_resource type="Texture2D" uid="uid://dobnufiofq3yb" path="res://Resources/spritesheets/caltechbeaver_spritesheet.png" id="1_mpx1q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wg0g2"]
 radius = 134.403
@@ -9,7 +9,12 @@ radius = 134.403
 scale = Vector2(0.3, 0.3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wmube")
+texture_filter = 1
+position = Vector2(-13.3333, -6.66667)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("1_mpx1q")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -1)
