@@ -83,7 +83,6 @@ animation = &"move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.4, -0.9)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fspgv")
 
 [node name="ShootCooldown" type="Timer" parent="."]

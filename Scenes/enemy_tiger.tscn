@@ -1,21 +1,110 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbhp4ex67ul34"]
+[gd_scene load_steps=16 format=3 uid="uid://bbhp4ex67ul34"]
 
-[ext_resource type="Script" uid="uid://cipesjqk8e6is" path="res://Scripts/enemy_tiger.gd" id="1_gxmv7"]
-[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_klu1n"]
+[ext_resource type="Script" path="res://Scripts/enemy_tiger.gd" id="1_gxmv7"]
+[ext_resource type="Texture2D" uid="uid://iqb4obmbk5sn" path="res://Resources/spritesheets/princetontiger_spritesheet.png" id="2_6y5py"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxdv4"]
 size = Vector2(20.8, 9.4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsj6h"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8q6e"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_matuc"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8v1v"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqv3d"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8to6"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd25w"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omt7d"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6upd"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g5ep"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdj8b"]
+atlas = ExtResource("2_6y5py")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80tkr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsj6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8q6e")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_matuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8v1v")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqv3d")
+}],
+"loop": true,
+"name": &"prepare",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8to6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd25w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omt7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6upd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g5ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdj8b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="EnemyTiger" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
 script = ExtResource("1_gxmv7")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_klu1n")
-region_enabled = true
-region_rect = Rect2(224, 16, 32, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.4, 3.5)
@@ -25,5 +114,13 @@ shape = SubResource("RectangleShape2D_xxdv4")
 one_shot = true
 
 [node name="AttackingTimer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.6, 1.4)
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_80tkr")
+animation = &"attack"
+frame_progress = 0.148903
 
 [connection signal="timeout" from="LungeChargeUp" to="." method="_on_lunge_charge_up_timeout"]

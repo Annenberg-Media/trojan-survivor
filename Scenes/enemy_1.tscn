@@ -95,7 +95,6 @@ texture_filter = 1
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_elj30")
 animation = &"move"
-frame_progress = 0.511096
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)

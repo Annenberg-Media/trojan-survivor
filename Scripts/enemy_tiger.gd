@@ -15,6 +15,7 @@ var attack_in_progress: bool = false
 @onready var lunge_chargeup = $LungeChargeUp
 @onready var attacking_timer = $AttackingTimer
 @onready var curr_state: int = State.stalking
+@onready var tiger_sprite := get_node_or_null("AnimatedSprite2D")
 
 enum State
 {
@@ -24,8 +25,13 @@ enum State
 }
 
 func _physics_process(delta: float) -> void:
+	if player.global_position.x > global_position.x:
+		tiger_sprite.flip_h = true
+	else:
+		tiger_sprite.flip_h = false
 	match curr_state:
 		State.stalking:
+			tiger_sprite.play("walk")
 			move_direction = (player.position - position).normalized()
 			walk_speed = 70
 			if (player.position - position).length() <= 300 and curr_state == State.stalking:
@@ -33,9 +39,11 @@ func _physics_process(delta: float) -> void:
 				tiger_attack()
 		
 		State.charging:
+			tiger_sprite.play("prepare")
 			walk_speed = 0
 			
 		State.lunging:
+			tiger_sprite.play("attack")
 			move_direction = (attack_direction - position).normalized()
 			walk_speed = 500
 			
