@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 			move_direction = (attack_direction - position).normalized()
 			walk_speed = 500
 			
-			if (attack_direction - position).length() < 10:
+			if (attack_direction - position).length() < 25:
 				curr_state = State.stalking
 				walk_speed = 70
 	
@@ -61,3 +61,9 @@ func tiger_attack() -> void:
 
 func _on_lunge_charge_up_timeout() -> void:
 	curr_state = State.lunging
+
+func _on_tiger_player_interaction_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		# print("DEBUG: tiger touched player! player takes damage")
+		body.receive_hit()
+		
