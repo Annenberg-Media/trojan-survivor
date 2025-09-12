@@ -34,9 +34,11 @@ var rng = RandomNumberGenerator.new()
 var game_time: float = 0
 var score: int = 0
 
-var past_twenty = false
-var past_forty = false
-var past_sixty = false
+# Variables for game difficulty scaling
+var curr_time_tens = 0
+var enemy_spawnnum_min = 1
+var enemy_spawnnum_max = 3
+
 
 ## Upgrade Resources
 var upgrade_list = [
@@ -64,7 +66,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# calls function to check if certain in-game times have been met 
 	# to decrease enemy spawn timer
-	check_decrement_spawn_timer(Time.get_ticks_msec()/1000.0)
+	check_decrement_spawn_timer(Time.get_ticks_msec()/1000)
 		
 	game_time += delta
 	emit_signal("time_changed", game_time)
@@ -112,8 +114,8 @@ func enemy_spawn_position():
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	var num_enemies = randi_range(1, 3)
-	print("Timer end; spawning ", num_enemies, " enemies!")
+	var num_enemies = randi_range(enemy_spawnnum_min, enemy_spawnnum_max)
+	print("DEBUG: Timer end; spawning ", num_enemies, " enemies!")
 	spawn_enemy(num_enemies)
 	# print("Spawning more enemies in: ", spawnTimer.wait_time, " seconds")
 	
@@ -122,21 +124,27 @@ func add_score(points: int) -> void:
 	score += points
 	score_changed.emit(score)
 	
-func check_decrement_spawn_timer(game_time: float):
-	if game_time >= 20 and not past_twenty:
-		print("DEBUG: player survived 20 seconds. decrementing timer")
-		past_twenty = true
-		spawnTimer.wait_time -= 0.5
-		
-	if game_time >= 40 and not past_forty:
-		print("DEBUG: player survived 40 seconds. decrementing timer further")
-		past_forty = true
-		spawnTimer.wait_time -= 0.5
-		
-	if game_time >= 60 and not past_sixty:
-		print("DEBUG: player survived a minute. decrementing timer")
-		past_sixty = true
-		spawnTimer.wait_time -= 0.5
+func check_decrement_spawn_timer(game_time: int):
+	if spawnTimer.wait_time == 1 and enemy_spawnnum_min == enemy_spawnnum_max:
+		return
+	var curr_tens = game_time / 10
+	
+	# every 10 seconds of game time
+	if curr_tens > curr_time_tens:
+		curr_time_tens = curr_tens
+		print("DEBUG: ten seconds passed! decrementing spawn timer: ", spawnTimer.wait_time)
+		# first, reduce the spawn timers AND increase spawnnum_max 
+		# less drastic of an increase, still an element of luck 
+		if spawnTimer.wait_time > 1.0:
+			spawnTimer.wait_time -= 0.2
+			enemy_spawnnum_max += 1
+			print("DEBUG: enemy spawn numbers now ", enemy_spawnnum_min, ", ", enemy_spawnnum_max)
+		# after spawn timer has decreased to 1 second, incrase spawnnum_min from here on
+		# "more dramatic" increase in difficulty, since guaranteeing higher number spawns now
+		else:
+			enemy_spawnnum_min += 1
+			print("DEBUG: enemy spawn numbers now ", enemy_spawnnum_min, ", ", enemy_spawnnum_max)
+		# at the end, will spawn 13 enemies each second
 
 func _on_player_game_over() -> void:
 	call_deferred("_go_to_title")

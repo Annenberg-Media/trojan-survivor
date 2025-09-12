@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvnqyi6j8d427"]
 
-[ext_resource type="Script" uid="uid://y1dsku8np37" path="res://Scripts/game_manager.gd" id="1_gnlcb"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_gnlcb"]
 [ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_h47eo"]
 [ext_resource type="PackedScene" uid="uid://82a6q3j2o85q" path="res://Scenes/background.tscn" id="2_24uq2"]
 [ext_resource type="PackedScene" uid="uid://c4rnd0irrjpw4" path="res://Scenes/speed_boost_pickup.tscn" id="4_m5vnq"]
@@ -13,7 +13,6 @@
 [node name="Game" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_gnlcb")
-spawn_interval = null
 
 [node name="Background" parent="." instance=ExtResource("2_24uq2")]
 process_mode = 1

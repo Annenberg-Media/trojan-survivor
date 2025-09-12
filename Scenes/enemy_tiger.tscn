@@ -129,7 +129,6 @@ animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tiger_PlayerInteraction"]
 position = Vector2(0.300001, 3.5)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wnt5f")
 
 [connection signal="timeout" from="LungeChargeUp" to="." method="_on_lunge_charge_up_timeout"]
