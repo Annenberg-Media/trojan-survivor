@@ -131,6 +131,7 @@ texture = ExtResource("1_0v1i3")
 shape = SubResource("CircleShape2D_v14o5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.85, 0.85)
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 texture_filter = 1

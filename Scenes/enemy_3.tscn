@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bphlwuqnefjal"]
+[gd_scene load_steps=9 format=3 uid="uid://bphlwuqnefjal"]
 
-[ext_resource type="Script" uid="uid://c4x28bgdbjmht" path="res://Scripts/enemy_3.gd" id="1_7260q"]
+[ext_resource type="Script" path="res://Scripts/enemy_3.gd" id="1_7260q"]
 [ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_p8t52"]
 [ext_resource type="Texture2D" uid="uid://keaqp1lba5fx" path="res://Resources/circle.webp" id="3_62etg"]
 
@@ -10,6 +10,43 @@ size = Vector2(10, 20)
 [sub_resource type="CircleShape2D" id="CircleShape2D_of7tq"]
 radius = 72.0
 
+[sub_resource type="Animation" id="Animation_8673r"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5708, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_kvyvs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2vb2"]
+_data = {
+"RESET": SubResource("Animation_kvyvs"),
+"spin": SubResource("Animation_8673r")
+}
+
 [node name="Enemy3" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
@@ -18,7 +55,6 @@ script = ExtResource("1_7260q")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(3.2, 0)
-rotation = 1.5708
 texture = ExtResource("2_p8t52")
 region_enabled = true
 region_rect = Rect2(0, 16, 32, 16)
@@ -35,6 +71,12 @@ shape = SubResource("CircleShape2D_of7tq")
 modulate = Color(0.713726, 0, 0.239216, 0.305882)
 scale = Vector2(0.147, 0.147)
 texture = ExtResource("3_62etg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a2vb2")
+}
+speed_scale = 5.0
 
 [connection signal="body_entered" from="BuffArea" to="." method="_on_buff_area_body_entered"]
 [connection signal="body_exited" from="BuffArea" to="." method="_on_buff_area_body_exited"]

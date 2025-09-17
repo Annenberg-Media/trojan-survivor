@@ -7,10 +7,11 @@ var player_in_area = null
 var move_speed = 85
 @onready var anim_sprite := get_node_or_null("AnimatedSprite2D")
 
-func _ready() -> void:
-	pass
-
 func _physics_process(_delta: float) -> void:
+	if disabled:
+		fly_away(_delta)
+		return
+		
 	if player and not attacking:
 		var direction = (player.position - position).normalized()
 		velocity = direction * move_speed

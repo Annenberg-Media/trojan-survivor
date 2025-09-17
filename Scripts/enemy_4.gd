@@ -7,6 +7,10 @@ var attacking = false
 var armor = true
 
 func _physics_process(delta: float) -> void:
+	if disabled:
+		fly_away(delta)
+		return
+		
 	if player and not attacking:
 		var direction = (player.position - position).normalized()
 		velocity = direction * move_speed

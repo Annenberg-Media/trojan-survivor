@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4rnd0irrjpw4"]
 
-[ext_resource type="Script" uid="uid://dq5n0ib7pkl6j" path="res://Scripts/speed_boost_pickup.gd" id="1_fsmp7"]
+[ext_resource type="Script" path="res://Scripts/speed_boost_pickup.gd" id="1_fsmp7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf4fd"]
 radius = 29.14

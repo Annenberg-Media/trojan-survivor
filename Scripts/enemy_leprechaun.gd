@@ -30,6 +30,10 @@ func setup_timers():
 	coin_drop_timer.timeout.connect(_on_coin_drop_timer_timeout)
 
 func _physics_process(delta: float) -> void:
+	if disabled:
+		fly_away(delta)
+		return
+		
 	if not player:
 		return
 		
