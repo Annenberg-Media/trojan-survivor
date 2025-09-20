@@ -25,6 +25,10 @@ enum State
 }
 
 func _physics_process(delta: float) -> void:
+	if disabled:
+		fly_away(delta)
+		return
+		
 	if player.global_position.x > global_position.x:
 		tiger_sprite.flip_h = true
 	else:

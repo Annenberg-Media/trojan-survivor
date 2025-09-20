@@ -16,6 +16,10 @@ var movespeed = 150
 var state = 0  # 0 for move toward, 1 for circle around, 2 for run away
 	
 func _physics_process(delta: float) -> void:
+	if disabled:
+		fly_away(delta)
+		return
+		
 	var distance_from_player = (position - player.position).length()
 	
 	if distance_from_player > 400:

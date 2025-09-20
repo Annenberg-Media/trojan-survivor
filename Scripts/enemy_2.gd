@@ -7,7 +7,11 @@ var enemy_bullet: PackedScene = preload("res://Scenes/enemy_projectile.tscn")
 var move_speed = 50
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if disabled:
+		fly_away(delta)
+		return
+		
 	# Move toward player until player in shooting range
 	if player and (player.position - position).length() > 400:
 		var direction = (player.position - position).normalized()

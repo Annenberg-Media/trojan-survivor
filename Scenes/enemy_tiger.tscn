@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbhp4ex67ul34"]
+[gd_scene load_steps=20 format=3 uid="uid://bbhp4ex67ul34"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_tiger.gd" id="1_gxmv7"]
 [ext_resource type="Texture2D" uid="uid://iqb4obmbk5sn" path="res://Resources/spritesheets/princetontiger_spritesheet.png" id="2_6y5py"]
@@ -104,6 +104,43 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wnt5f"]
 size = Vector2(22.6, 15.4)
 
+[sub_resource type="Animation" id="Animation_7nmtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_liwrd"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmawy"]
+_data = {
+"RESET": SubResource("Animation_7nmtc"),
+"spin": SubResource("Animation_liwrd")
+}
+
 [node name="EnemyTiger" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
@@ -130,6 +167,12 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tiger_PlayerInteraction"]
 position = Vector2(0.300001, 3.5)
 shape = SubResource("RectangleShape2D_wnt5f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rmawy")
+}
+speed_scale = 5.0
 
 [connection signal="timeout" from="LungeChargeUp" to="." method="_on_lunge_charge_up_timeout"]
 [connection signal="body_entered" from="tiger_PlayerInteraction" to="." method="_on_tiger_player_interaction_body_entered"]

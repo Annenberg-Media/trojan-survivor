@@ -1,9 +1,14 @@
 extends Enemy
 
 var move_speed = 0
+@onready
+var buff_area_sprite := $Sprite2D2
 
 func _physics_process(delta: float) -> void:
-	pass
+	if disabled:
+		fly_away(delta)
+		buff_area_sprite.visible = false
+		return
 
 
 func _on_buff_area_body_entered(body: Node2D) -> void:
