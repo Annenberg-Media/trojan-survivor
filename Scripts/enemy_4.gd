@@ -5,6 +5,7 @@ var move_speed = 50
 var player_in_area = null
 var attacking = false
 var armor = true
+@onready var anim_sprite := get_node_or_null("AnimatedSprite2D")
 
 func _physics_process(delta: float) -> void:
 	if disabled:
@@ -14,6 +15,17 @@ func _physics_process(delta: float) -> void:
 	if player and not attacking:
 		var direction = (player.position - position).normalized()
 		velocity = direction * move_speed
+		
+		if anim_sprite:
+			if armor:
+				anim_sprite.play("move_shielded")
+			else:
+				anim_sprite.play("move_unshielded")
+			if player.global_position.x > global_position.x:
+				anim_sprite.flip_h = true
+			else:
+				anim_sprite.flip_h = false
+				
 	elif attacking:
 		velocity = Vector2.ZERO
 		
@@ -56,7 +68,6 @@ func _on_player_interaction_body_exited(body: Node2D) -> void:
 		
 func tank_hit() -> bool:
 	if armor:
-		$armor.visible = false
 		armor = false
 		return true
 	else:
