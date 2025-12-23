@@ -22,7 +22,7 @@ func _ready() -> void:
 	Player.Instance.exp_changed.connect(_on_exp_changed)
 	# call to update to initial value
 	_on_health_changed(Player.Instance.current_health)
-	_on_exp_changed(Player.Instance.exp_amount, Player.Instance.exp_per_level)
+	_on_exp_changed(Player.Instance.exp_amount, Player.Instance.get_needed_exp())
 	_on_score_changed(0)
 
 func _on_score_changed(new_score: int) -> void:

@@ -36,6 +36,8 @@ var animation_player: AnimationPlayer = $AnimationPlayer
 var exp_amount: int = 0
 @export
 var exp_per_level: int = 1000
+var level: int = 0
+var exp_req_increase: int = 500;
 
 signal game_over
 signal health_changed(amount: int)
@@ -59,7 +61,7 @@ func _ready() -> void:
 	shoot_cooldown_timer.one_shot = true
 	shoot_cooldown_timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
 	add_child(shoot_cooldown_timer)
-	
+	add_exp(0)
 
 func _process(delta: float) -> void:
 	crosshair.current_angle = (1 - (shoot_cooldown_timer.time_left / shooting_cooldown_amount)) * TAU
@@ -148,16 +150,21 @@ func get_max_health() -> int:
 func add_exp(amount: int) -> void:
 	exp_amount += amount
 	print("Added " + str(amount) + " EXP. Current: " + str(exp_amount))
-	if exp_amount >= exp_per_level:
+	if exp_amount >= get_needed_exp():
 		print("Level up!")
 		on_level_up()
 		
-	exp_changed.emit(exp_amount, exp_per_level)
+	exp_changed.emit(exp_amount, get_needed_exp())
 
 func consume_exp() -> void:
-	exp_amount -= exp_per_level
+	exp_amount -= get_needed_exp()
 	exp_amount = max(exp_amount, 0)
-	exp_changed.emit(exp_amount, exp_per_level)
+	level += 1
+	exp_changed.emit(exp_amount, get_needed_exp())
 	
 func on_level_up() -> void:
 	gained_level.emit()
+
+# returns the needed exp for next level up
+func get_needed_exp() -> int:
+	return exp_per_level + level * exp_req_increase
