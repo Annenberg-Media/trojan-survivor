@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var tilemap = $TileMap
 @export var view_distance: int = 10
-@export var chunk_size: int = 20
+@export var chunk_size: int = 30
 @export var tile_size: int = 16
 @export var intial_chunks: int = 4
 
