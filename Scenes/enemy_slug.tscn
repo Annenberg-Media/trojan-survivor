@@ -1,13 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4datena32wqo"]
+[gd_scene load_steps=13 format=3 uid="uid://d4datena32wqo"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_slug.gd" id="1_afe0e"]
-[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_31iwv"]
+[ext_resource type="Texture2D" uid="uid://b515hmybqek63" path="res://Resources/spritesheets/ucsb_slug_spritesheet.png" id="2_r1sm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnuf0"]
-size = Vector2(21, 11)
+size = Vector2(21.4, 20.2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hm34h"]
-size = Vector2(24.2, 14.8)
+size = Vector2(22.6, 21.2)
+
+[sub_resource type="Animation" id="Animation_kvyvs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_8673r"]
 resource_name = "spin"
@@ -25,51 +40,64 @@ tracks/0/keys = {
 "values": [1.5708, 6.28319]
 }
 
-[sub_resource type="Animation" id="Animation_kvyvs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2vb2"]
 _data = {
 "RESET": SubResource("Animation_kvyvs"),
 "spin": SubResource("Animation_8673r")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6mkn"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56r62"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb7fw"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jid38"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65qno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6mkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56r62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb7fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jid38")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="EnemySlug" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
 script = ExtResource("1_afe0e")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 0, 1)
-texture_filter = 1
-position = Vector2(0, -11)
-texture = ExtResource("2_31iwv")
-offset = Vector2(0, -8)
-region_enabled = true
-region_rect = Rect2(0, 0, 31.3333, 33.3333)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.4, -7.6)
+position = Vector2(0.499999, -0.300001)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mnuf0")
 
 [node name="PlayerInteraction" type="Area2D" parent="."]
-visible = false
 position = Vector2(0.6, -7.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
-position = Vector2(-0.199999, -0.3)
+position = Vector2(-0.100001, 7)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hm34h")
 
 [node name="HitTimer" type="Timer" parent="."]
@@ -84,6 +112,12 @@ libraries = {
 "": SubResource("AnimationLibrary_a2vb2")
 }
 speed_scale = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.3625, 0.3625)
+sprite_frames = SubResource("SpriteFrames_65qno")
+frame_progress = 0.192352
 
 [connection signal="body_entered" from="PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="PlayerInteraction" to="." method="_on_player_interaction_body_exited"]

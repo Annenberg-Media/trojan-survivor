@@ -3,16 +3,17 @@ extends MeleeEnemy
 var slime_scene = preload("res://Scenes/slime_field.tscn")
 
 static var slime_drop_interval: float = 2
-
+@onready var slug_sprite = $AnimatedSprite2D
 
 func _ready() -> void:
+	slug_sprite.play("default")
 	super._ready()
 	var offset_timer: Timer = Timer.new()
 	add_child(offset_timer)
 	offset_timer.start(randf_range(0,1))
 	await offset_timer.timeout
 	$SlimeDropTimer.start(slime_drop_interval)
-	
+
 	
 func _on_slime_drop_timer_timeout() -> void:
 	var new_slime: Node2D = slime_scene.instantiate()
