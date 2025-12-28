@@ -17,12 +17,14 @@ func _physics_process(delta: float) -> void:
 		var direction = (player.position - position).normalized()
 		velocity = direction * move_speed
 		move_and_slide()
+		$AnimatedSprite2D.play("moving")
 		
 	# If player within range, shoot at player
 	elif player and (player.position - position).length() <= 400 and shoot_cooldown_timer.is_stopped():
 		shoot_at_player(player.global_position)
+		$AnimatedSprite2D.play("throw")
 		
-	$AnimatedSprite2D.play("move")
+	
 	if player.global_position.x > global_position.x:
 		$AnimatedSprite2D.flip_h = true
 	else:
