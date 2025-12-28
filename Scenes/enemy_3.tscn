@@ -1,45 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bphlwuqnefjal"]
+[gd_scene load_steps=24 format=3 uid="uid://bphlwuqnefjal"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_3.gd" id="1_7260q"]
-[ext_resource type="Texture2D" uid="uid://bokghfd0xdlel" path="res://Resources/crab.png" id="2_p8t52"]
-[ext_resource type="Texture2D" uid="uid://keaqp1lba5fx" path="res://Resources/circle.webp" id="3_62etg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsqbj"]
-size = Vector2(10, 20)
+[ext_resource type="Texture2D" uid="uid://sj1i8unmxepf" path="res://Resources/spritesheets/stanfordtree_wind_spritesheet.png" id="2_xl2hw"]
+[ext_resource type="Texture2D" uid="uid://dn3v3qi3rd6ad" path="res://Resources/spritesheets/stanfordtree_spritesheet.png" id="3_wht24"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_of7tq"]
 radius = 72.0
 
+[sub_resource type="Animation" id="Animation_kvyvs"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_8673r"]
 resource_name = "spin"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.5708, 6.28319]
-}
-
-[sub_resource type="Animation" id="Animation_kvyvs"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2vb2"]
 _data = {
@@ -47,36 +20,148 @@ _data = {
 "spin": SubResource("Animation_8673r")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsqbj"]
+size = Vector2(10, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l3gk"]
+atlas = ExtResource("2_xl2hw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqmoq"]
+atlas = ExtResource("2_xl2hw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rpuj"]
+atlas = ExtResource("2_xl2hw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8nhg"]
+atlas = ExtResource("2_xl2hw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b8mp"]
+atlas = ExtResource("2_xl2hw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlh7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l3gk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqmoq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rpuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8nhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b8mp")
+}],
+"loop": true,
+"name": &"wind",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ushi"]
+atlas = ExtResource("3_wht24")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v2dh"]
+atlas = ExtResource("3_wht24")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxf5e"]
+atlas = ExtResource("3_wht24")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvsvr"]
+atlas = ExtResource("3_wht24")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icmp3"]
+atlas = ExtResource("3_wht24")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vhyr"]
+atlas = ExtResource("3_wht24")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55kf2"]
+atlas = ExtResource("3_wht24")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i003k"]
+atlas = ExtResource("3_wht24")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h11nv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ushi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v2dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxf5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvsvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icmp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vhyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55kf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i003k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Enemy3" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(5, 5)
 script = ExtResource("1_7260q")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(3.2, 0)
-texture = ExtResource("2_p8t52")
-region_enabled = true
-region_rect = Rect2(0, 16, 32, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_tsqbj")
 
 [node name="BuffArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuffArea"]
 shape = SubResource("CircleShape2D_of7tq")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-modulate = Color(0.713726, 0, 0.239216, 0.305882)
-scale = Vector2(0.147, 0.147)
-texture = ExtResource("3_62etg")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_a2vb2")
 }
 speed_scale = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_tsqbj")
+
+[node name="WindSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.2625, 2.2625)
+sprite_frames = SubResource("SpriteFrames_tlh7i")
+animation = &"wind"
+frame_progress = 0.604121
+
+[node name="TreeSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_h11nv")
+frame_progress = 0.269573
 
 [connection signal="body_entered" from="BuffArea" to="." method="_on_buff_area_body_entered"]
 [connection signal="body_exited" from="BuffArea" to="." method="_on_buff_area_body_exited"]

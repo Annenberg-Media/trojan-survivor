@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://buqk6wmqj2ef1"]
 
-[ext_resource type="Script" uid="uid://43yiotko34f5" path="res://Scripts/enemy_4.gd" id="1_p4mwp"]
+[ext_resource type="Script" path="res://Scripts/enemy_4.gd" id="1_p4mwp"]
 [ext_resource type="Texture2D" uid="uid://bjiniebha5y5n" path="res://Resources/spritesheets/sanjosestatespartan_spritesheet.png" id="2_hk3w0"]
 [ext_resource type="Animation" uid="uid://cadjr16coeqtp" path="res://Resources/spin_anim.res" id="2_w10yr"]
 
@@ -15,8 +15,8 @@ length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a2vb2"]
 _data = {
-&"RESET": SubResource("Animation_kvyvs"),
-&"spin": ExtResource("2_w10yr")
+"RESET": SubResource("Animation_kvyvs"),
+"spin": ExtResource("2_w10yr")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oifo4"]
@@ -149,7 +149,7 @@ shape = SubResource("RectangleShape2D_v01fu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_a2vb2")
+"": SubResource("AnimationLibrary_a2vb2")
 }
 speed_scale = 5.0
 

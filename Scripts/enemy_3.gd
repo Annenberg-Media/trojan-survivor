@@ -1,14 +1,19 @@
 extends Enemy
 
 var move_speed = 0
+@onready var tree_sprite = $TreeSprite
 @onready
-var buff_area_sprite := $Sprite2D2
+var buff_area_sprite := $WindSprite
 
 func _physics_process(delta: float) -> void:
+	tree_sprite.play("default")
+	buff_area_sprite.play("wind")
 	if disabled:
+		tree_sprite.stop()
 		fly_away(delta)
 		buff_area_sprite.visible = false
 		return
+	
 
 
 func _on_buff_area_body_entered(body: Node2D) -> void:
