@@ -6,7 +6,6 @@ static var slime_drop_interval: float = 2
 @onready var slug_sprite = $AnimatedSprite2D
 
 func _ready() -> void:
-	slug_sprite.play("default")
 	super._ready()
 	var offset_timer: Timer = Timer.new()
 	add_child(offset_timer)

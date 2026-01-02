@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4datena32wqo"]
+[gd_scene load_steps=17 format=3 uid="uid://d4datena32wqo"]
 
 [ext_resource type="Script" path="res://Scripts/enemy_slug.gd" id="1_afe0e"]
 [ext_resource type="Texture2D" uid="uid://b515hmybqek63" path="res://Resources/spritesheets/ucsb_slug_spritesheet.png" id="2_r1sm8"]
@@ -46,6 +46,22 @@ _data = {
 "spin": SubResource("Animation_8673r")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhpfi"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbcs7"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxwhg"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f03lw"]
+atlas = ExtResource("2_r1sm8")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6mkn"]
 atlas = ExtResource("2_r1sm8")
 region = Rect2(0, 0, 64, 64)
@@ -66,6 +82,23 @@ region = Rect2(192, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hhpfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbcs7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxwhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f03lw")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j6mkn")
 }, {
 "duration": 1.0,
@@ -78,7 +111,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jid38")
 }],
 "loop": true,
-"name": &"default",
+"name": &"move",
 "speed": 3.0
 }]
 
@@ -89,7 +122,6 @@ script = ExtResource("1_afe0e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.499999, -0.300001)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mnuf0")
 
 [node name="PlayerInteraction" type="Area2D" parent="."]
@@ -97,7 +129,6 @@ position = Vector2(0.6, -7.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteraction"]
 position = Vector2(-0.100001, 7)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hm34h")
 
 [node name="HitTimer" type="Timer" parent="."]
@@ -117,7 +148,7 @@ speed_scale = 5.0
 texture_filter = 1
 scale = Vector2(0.3625, 0.3625)
 sprite_frames = SubResource("SpriteFrames_65qno")
-frame_progress = 0.192352
+animation = &"attack"
 
 [connection signal="body_entered" from="PlayerInteraction" to="." method="_on_player_interaction_body_entered"]
 [connection signal="body_exited" from="PlayerInteraction" to="." method="_on_player_interaction_body_exited"]
