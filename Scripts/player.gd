@@ -32,6 +32,10 @@ var movement_dust_particle: CPUParticles2D = $MovementDustParticle
 @onready
 var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready 
+var player_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+var is_throwing = false
+
 @export
 var exp_amount: int = 0
 @export
@@ -83,6 +87,14 @@ func _physics_process(delta: float) -> void:
 	# emit movement_dust_particle if we are moving
 	movement_dust_particle.emitting = velocity.normalized() != Vector2.ZERO
 	
+	if not is_throwing and player_animated_sprite.animation != "move":
+			player_animated_sprite.play("move")
+	
+	if crosshair.global_position.x > global_position.x:
+		player_animated_sprite.flip_h = true
+	else:
+		player_animated_sprite.flip_h = false
+		
 	if Input.is_action_just_pressed("shoot"):
 		shoot_projectile(global_position.direction_to(crosshair.global_position))
 
@@ -91,7 +103,11 @@ func shoot_projectile(dir: Vector2):
 	if !shoot_cooldown_timer.is_stopped():
 		print("Shooting on cooldown")
 		return
-	
+		
+	if not is_throwing:
+		is_throwing = true
+		player_animated_sprite.play("throw")
+		
 	if multi_shot_active:
 		var half_spread = multi_shot_spread * (multi_shot_count - 1) / 2
 		
@@ -168,3 +184,7 @@ func on_level_up() -> void:
 # returns the needed exp for next level up
 func get_needed_exp() -> int:
 	return exp_per_level + level * exp_req_increase
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if player_animated_sprite.animation == "throw":
+		is_throwing = false

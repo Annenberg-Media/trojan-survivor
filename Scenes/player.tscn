@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqcvgxv13m12a"]
+[gd_scene load_steps=24 format=3 uid="uid://dqcvgxv13m12a"]
 
-[ext_resource type="Texture2D" uid="uid://wigi3jjsakjs" path="res://icon.svg" id="1_0v1i3"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_px5vt"]
-[ext_resource type="Shader" path="res://Resources/player_hit_blink.gdshader" id="2_r52y1"]
 [ext_resource type="Script" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
+[ext_resource type="Texture2D" uid="uid://b8udbjo1uyr4" path="res://Resources/spritesheets/player_trojan_spritesheet.png" id="3_xcdh2"]
 
 [sub_resource type="Gradient" id="Gradient_4bkvw"]
 interpolation_mode = 1
@@ -18,13 +17,8 @@ fill_to = Vector2(0.796117, 0.140777)
 [sub_resource type="Gradient" id="Gradient_i3xpu"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fedpb"]
-shader = ExtResource("2_r52y1")
-shader_parameter/active = false
-shader_parameter/tint = Color(1, 1, 1, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v14o5"]
-radius = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82uk4"]
+size = Vector2(55, 111)
 
 [sub_resource type="Gradient" id="Gradient_66ts0"]
 interpolation_mode = 1
@@ -74,40 +68,78 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_uy15k"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_0maej"]
 resource_name = "hit_blink"
 length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_87osu"]
 _data = {
 "RESET": SubResource("Animation_uy15k"),
 "hit_blink": SubResource("Animation_0maej")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdwue"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taas5"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kha33"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xuj0"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6nhp"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh585"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj05v"]
+atlas = ExtResource("3_xcdh2")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_168wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdwue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taas5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kha33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xuj0")
+}],
+"loop": true,
+"name": &"move",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6nhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh585")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj05v")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 7.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -122,13 +154,9 @@ scale_amount_min = 0.2
 scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_i3xpu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_fedpb")
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_0v1i3")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_v14o5")
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_82uk4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.85, 0.85)
@@ -153,3 +181,14 @@ libraries = {
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.65625, 1.65625)
+sprite_frames = SubResource("SpriteFrames_168wb")
+animation = &"throw"
+frame = 2
+frame_progress = 1.0
+
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
