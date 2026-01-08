@@ -134,6 +134,7 @@ func _on_player_levelup() -> void:
 	# pause game
 	print("PAUSE GAME")
 	get_tree().paused = true
+	intervalTimer.paused = true
 	
 	# generate options
 	current_upgrade_options.clear()
@@ -155,11 +156,11 @@ func _on_player_levelup() -> void:
 	# resume game
 	print("RESUME GAME")
 	get_tree().paused = false
+	intervalTimer.paused = false
 
 
 func _on_ScoreTimer_timeout() -> void:
 	Scoring.add_score(2)
-
 
 func _on_interval_timer_timeout() -> void:
 	# Timer set to every 10 seconds, at which difficulty will increase, to a cap
@@ -171,6 +172,7 @@ func _on_interval_timer_timeout() -> void:
 	# - increase MIN of range of random number of enemy spawn; this means as
 	# time passes, a higher number of enemies more likely to spawn
 	# - at the end, 13 enemies will spawn every second
+	# print("DEBUG: intervalTimer timeout")
 	if spawnTimer.wait_time > 1.0:
 		spawnTimer.wait_time -= 0.2
 		enemy_spawnnum_max += 1
