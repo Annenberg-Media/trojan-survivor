@@ -24,7 +24,7 @@ func explode():
 		return
 		
 	has_exploded = true
-	print("Coin exploded.")
+	# print("Coin exploded.")
 	
 	# Circle of explosion + raidius
 	var space_state = get_world_2d().direct_space_state

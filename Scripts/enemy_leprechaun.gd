@@ -65,7 +65,7 @@ func drop_exploding_coin():
 	new_coin.global_position = global_position + offset
 	GameManager.Instance.call_deferred("add_child", new_coin)
 	
-	print("Leprechaun dropped an exploding coin at: ", offset)
+	# print("Leprechaun dropped an exploding coin at: ", offset)
 
 # Todo: Consider override for scoring later
 

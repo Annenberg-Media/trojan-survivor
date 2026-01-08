@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ciupfrmfevhxy"]
 
-[ext_resource type="Script" uid="uid://bnwusvwx88qxm" path="res://Scripts/exploding_coin.gd" id="1_fajdk"]
+[ext_resource type="Script" path="res://Scripts/exploding_coin.gd" id="1_fajdk"]
 [ext_resource type="Texture2D" uid="uid://83ifnmhvk6ec" path="res://Resources/exploding_coin.png" id="1_iekim"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fajdk"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://da8p5kmxoju3p"]
 
-[ext_resource type="Script" uid="uid://d3u703lknt8oy" path="res://Scripts/hud.gd" id="1_cqfg0"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cqfg0"]
 [ext_resource type="PackedScene" uid="uid://c5iy7tha8l1y" path="res://Scenes/upgrade_option_button.tscn" id="2_6m5l7"]
-[ext_resource type="Script" uid="uid://b86n25r5mqeii" path="res://Scenes/health_display.gd" id="3_6fbih"]
+[ext_resource type="Script" path="res://Scenes/health_display.gd" id="3_6fbih"]
 [ext_resource type="Texture2D" uid="uid://crdmtsnpare5a" path="res://Resources/health_icon.png" id="4_t1xeu"]
-[ext_resource type="Script" uid="uid://dvj10gykkkb3p" path="res://Scenes/exp_bar.gd" id="5_36asn"]
-[ext_resource type="Script" uid="uid://bpg7sd3lwt7mm" path="res://Scripts/animated_progress_bar.gd" id="5_t1xeu"]
+[ext_resource type="Script" path="res://Scenes/exp_bar.gd" id="5_36asn"]
+[ext_resource type="Script" path="res://Scripts/animated_progress_bar.gd" id="5_t1xeu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]
 expand_margin_left = 20.0

@@ -1,13 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbpvkqhs46lul"]
 
-[ext_resource type="Script" uid="uid://y1dsku8np37" path="res://Scripts/game_manager.gd" id="1_pnkgo"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_pnkgo"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_pnkgo")
-spawn_interval = null
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
+[node name="IntervalTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]

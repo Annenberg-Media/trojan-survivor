@@ -30,6 +30,7 @@ var slime_fields: Node2D = $SlimeFields
 
 var rng = RandomNumberGenerator.new()
 @onready var spawnTimer = $EnemySpawnTimer
+@onready var intervalTimer = $IntervalTimer
 
 var game_time: float = 0
 var score: int = 0
@@ -66,7 +67,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# calls function to check if certain in-game times have been met 
 	# to decrease enemy spawn timer
-	check_decrement_spawn_timer(Time.get_ticks_msec()/1000)
 		
 	game_time += delta
 	emit_signal("time_changed", game_time)
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 func spawn_enemy(num: int):
 	for i in range(num):
 		var rand_enemy_type = randi_range(1, enemy_list.size())
-		print("SPAWNING: Type ", rand_enemy_type)
+		# print("SPAWNING: Type ", rand_enemy_type)
 		
 		var new_enemy = enemy_list[rand_enemy_type-1].instantiate()
 		new_enemy.position = enemy_spawn_position()
@@ -115,7 +115,7 @@ func enemy_spawn_position():
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	var num_enemies = randi_range(enemy_spawnnum_min, enemy_spawnnum_max)
-	print("DEBUG: Timer end; spawning ", num_enemies, " enemies!")
+	# print("DEBUG: Timer end; spawning ", num_enemies, " enemies!")
 	spawn_enemy(num_enemies)
 	# print("Spawning more enemies in: ", spawnTimer.wait_time, " seconds")
 	
@@ -123,28 +123,6 @@ func _on_enemy_spawn_timer_timeout() -> void:
 func add_score(points: int) -> void:
 	score += points
 	score_changed.emit(score)
-	
-func check_decrement_spawn_timer(game_time: int):
-	if spawnTimer.wait_time == 1 and enemy_spawnnum_min == enemy_spawnnum_max:
-		return
-	var curr_tens = game_time / 10
-	
-	# every 10 seconds of game time
-	if curr_tens > curr_time_tens:
-		curr_time_tens = curr_tens
-		print("DEBUG: ten seconds passed! decrementing spawn timer: ", spawnTimer.wait_time)
-		# first, reduce the spawn timers AND increase spawnnum_max 
-		# less drastic of an increase, still an element of luck 
-		if spawnTimer.wait_time > 1.0:
-			spawnTimer.wait_time -= 0.2
-			enemy_spawnnum_max += 1
-			print("DEBUG: enemy spawn numbers now ", enemy_spawnnum_min, ", ", enemy_spawnnum_max)
-		# after spawn timer has decreased to 1 second, incrase spawnnum_min from here on
-		# "more dramatic" increase in difficulty, since guaranteeing higher number spawns now
-		else:
-			enemy_spawnnum_min += 1
-			print("DEBUG: enemy spawn numbers now ", enemy_spawnnum_min, ", ", enemy_spawnnum_max)
-		# at the end, will spawn 13 enemies each second
 
 func _on_player_game_over() -> void:
 	call_deferred("_go_to_title")
@@ -181,3 +159,23 @@ func _on_player_levelup() -> void:
 
 func _on_ScoreTimer_timeout() -> void:
 	Scoring.add_score(2)
+
+
+func _on_interval_timer_timeout() -> void:
+	# Timer set to every 10 seconds, at which difficulty will increase, to a cap
+	# First stage of difficulty increase:
+	# - decrease enemy spawn timer by 0.2 sec
+	# - increase the MAX of range of random number of enemy spawn; this is a less
+	# dramatic increase, as a lower number can still spawn based on RNG
+	# Second stage of difficulty increase:
+	# - increase MIN of range of random number of enemy spawn; this means as
+	# time passes, a higher number of enemies more likely to spawn
+	# - at the end, 13 enemies will spawn every second
+	if spawnTimer.wait_time > 1.0:
+		spawnTimer.wait_time -= 0.2
+		enemy_spawnnum_max += 1
+		return
+	if enemy_spawnnum_min == enemy_spawnnum_max:
+		intervalTimer.stop()
+		return
+	enemy_spawnnum_min += 1

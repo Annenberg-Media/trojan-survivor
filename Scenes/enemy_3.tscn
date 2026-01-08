@@ -147,7 +147,6 @@ libraries = {
 speed_scale = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tsqbj")
 
 [node name="WindSprite" type="AnimatedSprite2D" parent="."]

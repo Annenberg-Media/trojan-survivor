@@ -29,6 +29,10 @@ process_mode = 1
 wait_time = 3.0
 autostart = true
 
+[node name="IntervalTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="SpeedBoostPickup" parent="." instance=ExtResource("4_m5vnq")]
 process_mode = 1
 position = Vector2(402, 106)
@@ -58,4 +62,5 @@ position = Vector2(929, -479)
 
 [connection signal="game_over" from="Player" to="." method="_on_player_game_over"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_timer_timeout"]
