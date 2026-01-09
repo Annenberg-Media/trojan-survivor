@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvnqyi6j8d427"]
+[gd_scene load_steps=9 format=3 uid="uid://dvnqyi6j8d427"]
 
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_gnlcb"]
 [ext_resource type="PackedScene" uid="uid://dqcvgxv13m12a" path="res://Scenes/player.tscn" id="1_h47eo"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dlinpehdfxii0" path="res://Scenes/exp_orb_pickup.tscn" id="6_gimdb"]
 [ext_resource type="PackedScene" uid="uid://ctwf6e5igv7xn" path="res://Scenes/multi_shot_pickup.tscn" id="7_syqr4"]
 [ext_resource type="PackedScene" uid="uid://cjpql1acgoyh0" path="res://Scenes/slime_field.tscn" id="8_v158k"]
-[ext_resource type="PackedScene" uid="uid://d4datena32wqo" path="res://Scenes/enemy_slug.tscn" id="9_h4fw4"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
@@ -54,9 +53,6 @@ autostart = true
 
 [node name="SlowingField" parent="." instance=ExtResource("8_v158k")]
 position = Vector2(425, -143)
-
-[node name="EnemySlug" parent="." instance=ExtResource("9_h4fw4")]
-position = Vector2(929, -479)
 
 [node name="Projectiles" type="Node2D" parent="."]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Upgrades/Effects/speed_increase_effect.gd" id="1_id0w5"]
 [ext_resource type="Script" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_e4t3r"]
-[ext_resource type="Texture2D" uid="uid://d4lck5t3wsv8o" path="res://Textures/skateboard.png" id="2_jdr8i"]
+[ext_resource type="Texture2D" uid="uid://do4ipbjhwxkby" path="res://Resources/skateboard.png" id="2_wvpqm"]
 
 [sub_resource type="Resource" id="Resource_wwww1"]
 script = ExtResource("1_id0w5")
@@ -11,6 +11,6 @@ amount = 100.0
 [resource]
 script = ExtResource("2_e4t3r")
 upgrade_name = "Skateboard"
-icon = ExtResource("2_jdr8i")
+icon = ExtResource("2_wvpqm")
 description = "Get to class 25 pixels faster!"
 effect = SubResource("Resource_wwww1")

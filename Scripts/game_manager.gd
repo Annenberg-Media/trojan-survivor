@@ -74,7 +74,8 @@ func _process(delta: float) -> void:
 	
 func spawn_enemy(num: int):
 	for i in range(num):
-		var rand_enemy_type = randi_range(1, enemy_list.size())
+		# var rand_enemy_type = randi_range(1, enemy_list.size())
+		var rand_enemy_type = 6
 		# print("SPAWNING: Type ", rand_enemy_type)
 		
 		var new_enemy = enemy_list[rand_enemy_type-1].instantiate()
