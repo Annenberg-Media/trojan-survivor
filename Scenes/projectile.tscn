@@ -42,7 +42,7 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("8_rtvwu")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_chu8d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oetn"]
 atlas = ExtResource("9_la54r")
 region = Rect2(0, 0, 32, 32)
 
@@ -110,7 +110,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_chu8d")
+"texture": SubResource("AtlasTexture_2oetn")
 }],
 "loop": true,
 "name": &"8",
@@ -137,6 +137,6 @@ texture_filter = 1
 position = Vector2(1.19209e-07, 0)
 scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_e16jf")
-animation = &"9"
+animation = &"8"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
