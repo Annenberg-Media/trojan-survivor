@@ -8,6 +8,8 @@ var boost_amount: float = 100
 @export
 var duration: float = 3
 
+@onready var pickup_text_template = preload("res://Scenes/pickup_text.tscn")
+
 
 func effect_enter():
 	if target:
@@ -27,6 +29,10 @@ func _on_body_entered(body: Node2D) -> void:
 		$Sprite2D.visible = false
 		$DurationTimer.start(duration)
 		effect_enter()
+		
+		var new_pickup_text = pickup_text_template.instantiate()
+		add_child(new_pickup_text)
+		new_pickup_text.set_text_animate("SPEED BOOST!")
 
 
 func _on_duration_timer_timeout() -> void:

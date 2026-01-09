@@ -1,19 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctwf6e5igv7xn"]
+[gd_scene load_steps=4 format=3 uid="uid://ctwf6e5igv7xn"]
 
 [ext_resource type="Script" path="res://Scripts/multi_shot_pickup.gd" id="1_o3gpj"]
+[ext_resource type="Texture2D" uid="uid://78md4jruo3jb" path="res://Resources/pickup_sprites/multishot_pickup.png" id="2_1osek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf4fd"]
 radius = 29.14
-
-[sub_resource type="Gradient" id="Gradient_phh2i"]
-interpolation_mode = 1
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4b247"]
-gradient = SubResource("Gradient_phh2i")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.848624, 0.229358)
 
 [node name="MultiShotPickup" type="Area2D"]
 script = ExtResource("1_o3gpj")
@@ -23,15 +14,9 @@ shape = SubResource("CircleShape2D_wf4fd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.88245, 0.868271, 0.918636, 1)
-texture = SubResource("GradientTexture2D_4b247")
-
-[node name="TemporaryLabel" type="Label" parent="Sprite2D"]
-offset_left = -18.0
-offset_top = -11.0
-offset_right = 35.0
-offset_bottom = 12.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "MST+"
+texture_filter = 1
+scale = Vector2(1.6875, 1.6875)
+texture = ExtResource("2_1osek")
 
 [node name="DurationTimer" type="Timer" parent="."]
 

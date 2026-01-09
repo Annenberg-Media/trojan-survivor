@@ -6,6 +6,8 @@ var target
 @export var spread_angle: float = 15.0
 @export var duration: float = 5.0
 
+@onready var pickup_text_template = preload("res://Scenes/pickup_text.tscn")
+
 func effect_enter():
 	if target and target is Player:
 		target.multi_shot_active = true
@@ -22,6 +24,10 @@ func _on_body_entered(body: Node2D) -> void:
 		$Sprite2D.visible = false
 		$DurationTimer.start(duration)
 		effect_enter()
+		
+		var new_pickup_text = pickup_text_template.instantiate()
+		add_child(new_pickup_text)
+		new_pickup_text.set_text_animate("MULTISHOT!")
 
 func _on_duration_timer_timeout() -> void:
 	effect_exit()
