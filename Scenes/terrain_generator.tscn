@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkqu0eh2envha"]
+
+[ext_resource type="Texture2D" uid="uid://udxl88ecutb1" path="res://Textures/TileSet.png" id="1_2aao3"]
+[ext_resource type="Script" path="res://Scripts/terrain_gen.gd" id="2_6talx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rl6v"]
+texture = ExtResource("1_2aao3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5vu0d"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_4rl6v")
+
+[node name="TerrainGenerator" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5vu0d")
+format = 2
+script = ExtResource("2_6talx")
