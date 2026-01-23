@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://do6oq20rivpvv"]
+
+[ext_resource type="PackedScene" uid="uid://c0w6u0yx2abpc" path="res://Scenes/dialogue_manager.tscn" id="4_ie8kx"]
+[ext_resource type="PackedScene" uid="uid://bqwpg1tqndijv" path="res://Scenes/dialogue_tester.tscn" id="4_r7a8b"]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="dialogue_tester" parent="." instance=ExtResource("4_r7a8b")]
+position = Vector2(502, 538)
+
+[node name="DialogueManager" parent="." instance=ExtResource("4_ie8kx")]
+position = Vector2(0, -4)
