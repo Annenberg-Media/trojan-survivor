@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="UpgradeData" load_steps=5 format=3 uid="uid://bg2yc2oom0kqk"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bg2yc2oom0kqk"]
 
-[ext_resource type="Script" path="res://Scripts/Upgrades/Effects/speed_increase_effect.gd" id="1_id0w5"]
-[ext_resource type="Script" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_e4t3r"]
+[ext_resource type="Script" uid="uid://b08al83nx76fs" path="res://Scripts/Upgrades/Effects/speed_increase_effect.gd" id="1_id0w5"]
+[ext_resource type="Script" uid="uid://cgivoofo8oebg" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_e4t3r"]
 [ext_resource type="Texture2D" uid="uid://do4ipbjhwxkby" path="res://Resources/skateboard.png" id="2_wvpqm"]
 
 [sub_resource type="Resource" id="Resource_wwww1"]

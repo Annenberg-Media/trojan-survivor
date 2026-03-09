@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqcvgxv13m12a"]
+[gd_scene format=3 uid="uid://dqcvgxv13m12a"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_px5vt"]
-[ext_resource type="Script" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
+[ext_resource type="Script" uid="uid://cd7jcargb74df" path="res://Scripts/player.gd" id="1_px5vt"]
+[ext_resource type="Script" uid="uid://dfvuqbb5maqlm" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
 [ext_resource type="Texture2D" uid="uid://b8udbjo1uyr4" path="res://Resources/spritesheets/player_trojan_spritesheet.png" id="3_xcdh2"]
+[ext_resource type="AudioStream" uid="uid://c0mtbnwd1onk2" path="res://Resources/floraphonic-swing-whoosh-5-198498.mp3" id="4_vgqql"]
 
 [sub_resource type="Gradient" id="Gradient_4bkvw"]
 interpolation_mode = 1
@@ -62,8 +63,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5rky"]
 _data = {
-"RESET": SubResource("Animation_lresd"),
-"crosshair_click": SubResource("Animation_cgqij")
+&"RESET": SubResource("Animation_lresd"),
+&"crosshair_click": SubResource("Animation_cgqij")
 }
 
 [sub_resource type="Animation" id="Animation_uy15k"]
@@ -75,8 +76,8 @@ length = 0.1
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_87osu"]
 _data = {
-"RESET": SubResource("Animation_uy15k"),
-"hit_blink": SubResource("Animation_0maej")
+&"RESET": SubResource("Animation_uy15k"),
+&"hit_blink": SubResource("Animation_0maej")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vdwue"]
@@ -141,11 +142,11 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1477196346]
 motion_mode = 1
 script = ExtResource("1_px5vt")
 
-[node name="MovementDustParticle" type="CPUParticles2D" parent="."]
+[node name="MovementDustParticle" type="CPUParticles2D" parent="." unique_id=1454907597]
 position = Vector2(0, 21)
 amount = 3
 texture = SubResource("GradientTexture2D_3ob1c")
@@ -154,41 +155,41 @@ scale_amount_min = 0.2
 scale_amount_max = 0.4
 color_ramp = SubResource("Gradient_i3xpu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960146680]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_82uk4")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1903095628]
 zoom = Vector2(0.85, 0.85)
 
-[node name="Crosshair" type="Sprite2D" parent="."]
+[node name="Crosshair" type="Sprite2D" parent="." unique_id=575941111]
 texture_filter = 1
 scale = Vector2(0.8, 0.8)
 texture = SubResource("GradientTexture2D_mw0oy")
 script = ExtResource("3_6vs2t")
 ring_color = Color(1, 0.8, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Crosshair"]
-libraries = {
-"": SubResource("AnimationLibrary_o5rky")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Crosshair" unique_id=1925677345]
+libraries/ = SubResource("AnimationLibrary_o5rky")
 speed_scale = 4.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_87osu")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2140655592]
+libraries/ = SubResource("AnimationLibrary_87osu")
 
-[node name="InvincibleTimer" type="Timer" parent="."]
+[node name="InvincibleTimer" type="Timer" parent="." unique_id=908993776]
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=244874930]
 texture_filter = 1
 scale = Vector2(1.65625, 1.65625)
 sprite_frames = SubResource("SpriteFrames_168wb")
 animation = &"throw"
 frame = 2
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=151129238]
+stream = ExtResource("4_vgqql")
+max_polyphony = 10
 
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

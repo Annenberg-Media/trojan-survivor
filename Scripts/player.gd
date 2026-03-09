@@ -36,6 +36,9 @@ var animation_player: AnimationPlayer = $AnimationPlayer
 var player_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var is_throwing = false
 
+@onready
+var throw_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 @export
 var exp_amount: int = 0
 @export
@@ -119,12 +122,19 @@ func shoot_projectile(dir: Vector2):
 			new_projectile.global_position = global_position
 			new_projectile.direction = rotated_dir
 			GameManager.Instance.projectiles_node.add_child(new_projectile)
+			
+			throw_sound.play()
+			throw_sound.pitch_scale = randf_range(0.9, 1.1)
+			await get_tree().create_timer(0.05).timeout
 	else:
 		var new_projectile: Projectile = bullet_prefab.instantiate()
 		new_projectile.global_position = global_position
 		new_projectile.direction = dir
 		GameManager.Instance.projectiles_node.add_child(new_projectile)
 		shoot_cooldown_timer.start(shooting_cooldown_amount)
+		
+		throw_sound.pitch_scale = randf_range(0.9, 1.1)
+		throw_sound.play()
 		
 	shoot_cooldown_timer.start(shooting_cooldown_amount)
 	crosshair.shoot_effect()
