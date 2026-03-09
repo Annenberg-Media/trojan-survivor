@@ -19,6 +19,7 @@ var bullet_prefab: PackedScene = preload("uid://pe8pcbqp47dd")
 var shoot_cooldown_timer: Timer
 @export
 var shooting_cooldown_amount: float = 0.2
+var COOLDOWN: float = 0.2
 
 @export
 ## player's movement speed in pixels per second
@@ -37,7 +38,7 @@ var player_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var is_throwing = false
 
 @onready
-var throw_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var throw_sound = $AudioStreamPlayer2D
 
 @export
 var exp_amount: int = 0
@@ -69,6 +70,8 @@ func _ready() -> void:
 	shoot_cooldown_timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
 	add_child(shoot_cooldown_timer)
 	add_exp(0)
+	
+	COOLDOWN = shooting_cooldown_amount
 
 func _process(delta: float) -> void:
 	crosshair.current_angle = (1 - (shoot_cooldown_timer.time_left / shooting_cooldown_amount)) * TAU
@@ -98,13 +101,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		player_animated_sprite.flip_h = false
 		
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		shoot_projectile(global_position.direction_to(crosshair.global_position))
 
 func shoot_projectile(dir: Vector2):
 	# shooting is on cooldown
 	if !shoot_cooldown_timer.is_stopped():
-		print("Shooting on cooldown")
 		return
 		
 	if not is_throwing:
@@ -123,18 +125,18 @@ func shoot_projectile(dir: Vector2):
 			new_projectile.direction = rotated_dir
 			GameManager.Instance.projectiles_node.add_child(new_projectile)
 			
-			throw_sound.play()
-			throw_sound.pitch_scale = randf_range(0.9, 1.1)
-			await get_tree().create_timer(0.05).timeout
+			#await get_tree().create_timer(0.05).timeout
 	else:
 		var new_projectile: Projectile = bullet_prefab.instantiate()
 		new_projectile.global_position = global_position
 		new_projectile.direction = dir
 		GameManager.Instance.projectiles_node.add_child(new_projectile)
 		shoot_cooldown_timer.start(shooting_cooldown_amount)
-		
-		throw_sound.pitch_scale = randf_range(0.9, 1.1)
-		throw_sound.play()
+	
+	if multi_shot_active:
+		throw_sound.play_sound(3)
+	else:
+		throw_sound.play_sound()
 		
 	shoot_cooldown_timer.start(shooting_cooldown_amount)
 	crosshair.shoot_effect()

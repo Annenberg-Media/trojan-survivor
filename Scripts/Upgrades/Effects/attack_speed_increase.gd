@@ -11,4 +11,4 @@ func apply_effect(player: Player):
 
 func undo_effect(player: Player):
 	print("Decrease player attack cooldown by 10%")
-	player.shooting_cooldown_amount = 0.2
+	player.shooting_cooldown_amount = player.COOLDOWN

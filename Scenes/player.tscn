@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dxt81kfpua2og" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
 [ext_resource type="Texture2D" uid="uid://b8udbjo1uyr4" path="res://Resources/spritesheets/player_trojan_spritesheet.png" id="3_xcdh2"]
 [ext_resource type="AudioStream" uid="uid://c0mtbnwd1onk2" path="res://Resources/floraphonic-swing-whoosh-5-198498.mp3" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://cn8fhh82in7wq" path="res://Scenes/shoot_sound.gd" id="5_fkybt"]
 
 [sub_resource type="Gradient" id="Gradient_4bkvw"]
 interpolation_mode = 1
@@ -145,6 +146,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1477196346]
 motion_mode = 1
 script = ExtResource("1_px5vt")
+shooting_cooldown_amount = 0.4
 movement_speed = 250.0
 
 [node name="MovementDustParticle" type="CPUParticles2D" parent="." unique_id=1454907597]
@@ -164,6 +166,7 @@ shape = SubResource("RectangleShape2D_82uk4")
 zoom = Vector2(0.85, 0.85)
 
 [node name="Crosshair" type="Sprite2D" parent="." unique_id=575941111]
+visible = false
 texture_filter = 1
 scale = Vector2(0.8, 0.8)
 texture = SubResource("GradientTexture2D_mw0oy")
@@ -190,7 +193,8 @@ frame_progress = 1.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=151129238]
 stream = ExtResource("4_vgqql")
-max_polyphony = 10
+max_polyphony = 4
+script = ExtResource("5_fkybt")
 
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
