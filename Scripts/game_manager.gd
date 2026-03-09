@@ -49,7 +49,7 @@ var upgrade_list = [
 ]
 var current_upgrade_options = []
 var upgrade_option_count: int = 3
-
+var upgrade_node = preload("res://Scenes/upgrade_node.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -150,7 +150,12 @@ func _on_player_levelup() -> void:
 	print("Selected option: " + str(current_upgrade_options[selected_index]))
 	
 	# apply upgrade to player
-	current_upgrade_options[selected_index].effect.apply_effect(player)
+	#current_upgrade_options[selected_index].effect.apply_effect(player)
+	var upgrade = upgrade_node.instantiate()
+	upgrade.target = player
+	player.add_child(upgrade)
+	upgrade.data = current_upgrade_options[selected_index]
+	upgrade.effect_enter()
 	player.consume_exp()
 	
 	# resume game

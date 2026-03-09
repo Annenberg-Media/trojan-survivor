@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqcvgxv13m12a"]
 
-[ext_resource type="Script" uid="uid://cd7jcargb74df" path="res://Scripts/player.gd" id="1_px5vt"]
-[ext_resource type="Script" uid="uid://dfvuqbb5maqlm" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
+[ext_resource type="Script" uid="uid://d166fa66obvrh" path="res://Scripts/player.gd" id="1_px5vt"]
+[ext_resource type="Script" uid="uid://dxt81kfpua2og" path="res://Scripts/crosshair.gd" id="3_6vs2t"]
 [ext_resource type="Texture2D" uid="uid://b8udbjo1uyr4" path="res://Resources/spritesheets/player_trojan_spritesheet.png" id="3_xcdh2"]
 [ext_resource type="AudioStream" uid="uid://c0mtbnwd1onk2" path="res://Resources/floraphonic-swing-whoosh-5-198498.mp3" id="4_vgqql"]
 
@@ -145,6 +145,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" unique_id=1477196346]
 motion_mode = 1
 script = ExtResource("1_px5vt")
+movement_speed = 250.0
 
 [node name="MovementDustParticle" type="CPUParticles2D" parent="." unique_id=1454907597]
 position = Vector2(0, 21)

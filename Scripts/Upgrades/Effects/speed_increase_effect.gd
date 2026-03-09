@@ -2,7 +2,7 @@ extends Effect
 class_name SpeedIncreaseEffect
 
 @export
-var amount: float = 25
+var amount: float = 0
 
 ## Resource object that holds different scripts for effects
 func apply_effect(player: Player):

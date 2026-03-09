@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dwe6raacbhbgg"]
 
-[ext_resource type="Script" uid="uid://dtp4capw3xbxa" path="res://Scripts/Upgrades/Effects/attack_speed_increase.gd" id="1_gfix2"]
+[ext_resource type="Script" uid="uid://bjiqwo47nxbcu" path="res://Scripts/Upgrades/Effects/attack_speed_increase.gd" id="1_gfix2"]
 [ext_resource type="Texture2D" uid="uid://vo2qfkjvp3q2" path="res://Resources/matcha_latte.png" id="2_g12cw"]
-[ext_resource type="Script" uid="uid://cgivoofo8oebg" path="res://Scripts/Upgrades/upgrade_data.gd" id="3_wbxw3"]
+[ext_resource type="Script" uid="uid://vca2fx045n34" path="res://Scripts/Upgrades/upgrade_data.gd" id="3_wbxw3"]
 
 [sub_resource type="Resource" id="Resource_qpkbk"]
 script = ExtResource("1_gfix2")
 
 [resource]
 script = ExtResource("3_wbxw3")
-upgrade_name = "MatchaLatte"
+upgrade_name = "Matcha Latte"
 icon = ExtResource("2_g12cw")
-description = "Throw things faster!"
+description = "Throw things x2 faster!"
 effect = SubResource("Resource_qpkbk")

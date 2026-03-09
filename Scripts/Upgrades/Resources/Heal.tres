@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cuvekq7skdknx"]
 
-[ext_resource type="Script" uid="uid://c1vkdobfi3cru" path="res://Scripts/Upgrades/Effects/heal_effect.gd" id="1_86hkx"]
-[ext_resource type="Script" uid="uid://cgivoofo8oebg" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_15hb5"]
+[ext_resource type="Script" uid="uid://d73c6trm3wp0" path="res://Scripts/Upgrades/Effects/heal_effect.gd" id="1_86hkx"]
+[ext_resource type="Script" uid="uid://vca2fx045n34" path="res://Scripts/Upgrades/upgrade_data.gd" id="2_15hb5"]
 [ext_resource type="Texture2D" uid="uid://cq3coken6i25s" path="res://Resources/heal.png" id="2_srs4o"]
 
 [sub_resource type="Resource" id="Resource_15hb5"]
 script = ExtResource("1_86hkx")
-metadata/_custom_type_script = "uid://dqi84r2svabu7"
 
 [resource]
 script = ExtResource("2_15hb5")

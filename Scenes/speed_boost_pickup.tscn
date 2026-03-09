@@ -1,10 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4rnd0irrjpw4"]
+[gd_scene format=3 uid="uid://c4rnd0irrjpw4"]
 
-[ext_resource type="Script" uid="uid://dvh06p1arpniy" path="res://Scripts/speed_boost_pickup.gd" id="1_fsmp7"]
+[ext_resource type="Script" uid="uid://c13wtfrk02rdj" path="res://Scripts/speed_boost_pickup.gd" id="1_fsmp7"]
 [ext_resource type="Texture2D" uid="uid://cav8d1i61e8bp" path="res://Resources/pickup_sprites/speedboost_pickup.png" id="2_taach"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf4fd"]
 radius = 29.14
+
+[sub_resource type="Animation" id="Animation_0j7nh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6u4nt"]
 resource_name = "float"
@@ -22,45 +37,28 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(0, -10)]
 }
 
-[sub_resource type="Animation" id="Animation_0j7nh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ho141"]
 _data = {
 &"RESET": SubResource("Animation_0j7nh"),
 &"float": SubResource("Animation_6u4nt")
 }
 
-[node name="SpeedBoostPickup" type="Area2D"]
+[node name="SpeedBoostPickup" type="Area2D" unique_id=574644715]
 script = ExtResource("1_fsmp7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1955561384]
 shape = SubResource("CircleShape2D_wf4fd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1672239348]
 texture_filter = 1
 scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("2_taach")
 
-[node name="DurationTimer" type="Timer" parent="."]
+[node name="DurationTimer" type="Timer" parent="." unique_id=1856416488]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ho141")
-}
-autoplay = "float"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1419047904]
+libraries/ = SubResource("AnimationLibrary_ho141")
+autoplay = &"float"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_duration_timer_timeout"]

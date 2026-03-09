@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://da8p5kmxoju3p"]
+[gd_scene format=3 uid="uid://da8p5kmxoju3p"]
 
-[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_cqfg0"]
+[ext_resource type="Script" uid="uid://oqt3l4nwh5co" path="res://Scripts/hud.gd" id="1_cqfg0"]
 [ext_resource type="PackedScene" uid="uid://c5iy7tha8l1y" path="res://Scenes/upgrade_option_button.tscn" id="2_6m5l7"]
-[ext_resource type="Script" path="res://Scenes/health_display.gd" id="3_6fbih"]
+[ext_resource type="Script" uid="uid://dc1q738aj04hi" path="res://Scenes/health_display.gd" id="3_6fbih"]
 [ext_resource type="Texture2D" uid="uid://crdmtsnpare5a" path="res://Resources/health_icon.png" id="4_t1xeu"]
-[ext_resource type="Script" path="res://Scenes/exp_bar.gd" id="5_36asn"]
-[ext_resource type="Script" path="res://Scripts/animated_progress_bar.gd" id="5_t1xeu"]
+[ext_resource type="Script" uid="uid://bdrqlgjedtikw" path="res://Scenes/exp_bar.gd" id="5_36asn"]
+[ext_resource type="Script" uid="uid://bua0fxmi2wyph" path="res://Scripts/animated_progress_bar.gd" id="5_t1xeu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc7vk"]
 expand_margin_left = 20.0
@@ -26,7 +26,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7gr8i"]
 gradient = SubResource("Gradient_43w4t")
 
-[node name="Hud" type="Control"]
+[node name="Hud" type="Control" unique_id=1885630389]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,44 +34,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2145658663]
 script = ExtResource("1_cqfg0")
 
-[node name="DebugPanel" type="MarginContainer" parent="HUD"]
+[node name="DebugPanel" type="MarginContainer" parent="HUD" unique_id=1733403141]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="Panel" type="Panel" parent="HUD/DebugPanel"]
+[node name="Panel" type="Panel" parent="HUD/DebugPanel" unique_id=709247926]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nc7vk")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/DebugPanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/DebugPanel" unique_id=369307018]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/DebugPanel/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/DebugPanel/HBoxContainer" unique_id=1136275081]
 layout_mode = 2
 
-[node name="Health" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer"]
+[node name="Health" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer" unique_id=828611788]
 layout_mode = 2
 text = "Health:
 "
 
-[node name="Time" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer"]
+[node name="Time" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer" unique_id=970360750]
 layout_mode = 2
 text = "Time: "
 
-[node name="Score" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer"]
+[node name="Score" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer" unique_id=1057984932]
 layout_mode = 2
 text = "Score:"
 
-[node name="EXP" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer"]
+[node name="EXP" type="Label" parent="HUD/DebugPanel/HBoxContainer/VBoxContainer" unique_id=78723757]
 layout_mode = 2
 text = "EXP:"
 
-[node name="UpgradeMenu" type="Panel" parent="HUD"]
+[node name="UpgradeMenu" type="Panel" parent="HUD" unique_id=836101920]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,7 +79,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu" unique_id=567470395]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -97,16 +97,16 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/UpgradeMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/UpgradeMenu/MarginContainer" unique_id=753018013]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer" unique_id=2140906757]
 layout_mode = 2
-text = "CHOOSE YOUR UPGRADE"
+text = "CHOOSE YOUR REWARD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer" unique_id=819992742]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -114,21 +114,21 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer" unique_id=673877765]
 layout_mode = 2
 
-[node name="Button" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1442785384 instance=ExtResource("2_6m5l7")]
 layout_mode = 2
 
-[node name="Button2" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button2" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=975640306 instance=ExtResource("2_6m5l7")]
 layout_mode = 2
 index = 1
 
-[node name="Button3" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_6m5l7")]
+[node name="Button3" parent="HUD/UpgradeMenu/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1609059893 instance=ExtResource("2_6m5l7")]
 layout_mode = 2
 index = 2
 
-[node name="HealthDisplay" type="Control" parent="HUD"]
+[node name="HealthDisplay" type="Control" parent="HUD" unique_id=1776966783]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 1
@@ -140,7 +140,7 @@ grow_horizontal = 0
 script = ExtResource("3_6fbih")
 starting_count = 3
 
-[node name="HealthIconContainer" type="HBoxContainer" parent="HUD/HealthDisplay"]
+[node name="HealthIconContainer" type="HBoxContainer" parent="HUD/HealthDisplay" unique_id=1627467072]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
@@ -152,28 +152,28 @@ offset_bottom = 64.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="HealthIcon" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
+[node name="HealthIcon" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer" unique_id=2011236396]
 self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
 layout_mode = 2
 texture = ExtResource("4_t1xeu")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="HealthIcon2" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
+[node name="HealthIcon2" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer" unique_id=1750022846]
 self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
 layout_mode = 2
 texture = ExtResource("4_t1xeu")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="HealthIcon3" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer"]
+[node name="HealthIcon3" type="TextureRect" parent="HUD/HealthDisplay/HealthIconContainer" unique_id=1589293792]
 self_modulate = Color(0.841804, 6.06447e-06, 6.73831e-07, 1)
 layout_mode = 2
 texture = ExtResource("4_t1xeu")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="EXPBar" type="Control" parent="HUD"]
+[node name="EXPBar" type="Control" parent="HUD" unique_id=51595663]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 3
@@ -185,7 +185,7 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("5_36asn")
 
-[node name="AnimatedProgressBar" type="TextureProgressBar" parent="HUD/EXPBar"]
+[node name="AnimatedProgressBar" type="TextureProgressBar" parent="HUD/EXPBar" unique_id=820842400]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -199,7 +199,7 @@ tint_progress = Color(1, 1, 0.454902, 1)
 script = ExtResource("5_t1xeu")
 fill_time = 0.3
 
-[node name="Label" type="Label" parent="HUD/EXPBar"]
+[node name="Label" type="Label" parent="HUD/EXPBar" unique_id=996121029]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -209,7 +209,7 @@ theme_override_font_sizes/font_size = 20
 text = "0 / 0"
 vertical_alignment = 2
 
-[node name="TimeLabel" type="Label" parent="HUD"]
+[node name="TimeLabel" type="Label" parent="HUD" unique_id=1653338655]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_top = 0.05
@@ -222,7 +222,7 @@ text = "Time: "
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ScoreDisplay" type="Label" parent="HUD"]
+[node name="ScoreDisplay" type="Label" parent="HUD" unique_id=826975074]
 unique_name_in_owner = true
 offset_left = 21.0
 offset_top = 22.0
