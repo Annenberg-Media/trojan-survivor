@@ -1,14 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://do6oq20rivpvv"]
+[gd_scene format=3 uid="uid://do6oq20rivpvv"]
 
-[ext_resource type="PackedScene" uid="uid://c0w6u0yx2abpc" path="res://Scenes/dialogue_manager.tscn" id="4_ie8kx"]
-[ext_resource type="PackedScene" uid="uid://bqwpg1tqndijv" path="res://Scenes/dialogue_tester.tscn" id="4_r7a8b"]
+[ext_resource type="Texture2D" uid="uid://csuhqc6w2fwya" path="res://Textures/tutorial_backdrop-export.png" id="1_ka2pi"]
 
-[node name="Tutorial" type="Node2D"]
+[node name="canvas" type="CanvasLayer" unique_id=571249922]
 
-[node name="Projectiles" type="Node2D" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1682038836]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ka2pi")
 
-[node name="dialogue_tester" parent="." instance=ExtResource("4_r7a8b")]
-position = Vector2(502, 538)
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1391615498]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -513.0
+offset_top = -257.0
+offset_right = 514.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="DialogueManager" parent="." instance=ExtResource("4_ie8kx")]
-position = Vector2(0, -4)
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=242588065]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=377528088]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "[center][b]Welcome to Trojan Survivors![/b][/center]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=230600689]
+layout_mode = 2
+theme_override_constants/separation = 500
+alignment = 1
+
+[node name="Button" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1616447990]
+layout_mode = 2
+text = "Previous"
+
+[node name="Button2" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1905364259]
+layout_mode = 2
+text = "Next"
