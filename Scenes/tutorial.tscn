@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://do6oq20rivpvv"]
 
+[ext_resource type="Script" uid="uid://crxf2b05xmvbt" path="res://Scripts/tutorial_logic.gd" id="1_feyax"]
 [ext_resource type="Texture2D" uid="uid://csuhqc6w2fwya" path="res://Textures/tutorial_backdrop-export.png" id="1_ka2pi"]
 
 [node name="canvas" type="CanvasLayer" unique_id=571249922]
+script = ExtResource("1_feyax")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1682038836]
 anchors_preset = 15
@@ -33,24 +35,40 @@ theme_override_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=242588065]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=377528088]
-custom_minimum_size = Vector2(0, 200)
+[node name="Headline" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=377528088]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 32
+theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[center][b]Welcome to Trojan Survivors![/b][/center]"
+
+[node name="Content" type="RichTextLabel" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1060261020]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/line_separation = 30
+theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/bold_font_size = 22
+theme_override_font_sizes/bold_italics_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+theme_override_font_sizes/mono_font_size = 22
+bbcode_enabled = true
+text = "[ul]
+item 1
+item 2
+[/ul]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=230600689]
 layout_mode = 2
 theme_override_constants/separation = 500
 alignment = 1
 
-[node name="Button" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1616447990]
+[node name="PrevBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1616447990]
 layout_mode = 2
 text = "Previous"
 
-[node name="Button2" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1905364259]
+[node name="NextBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1905364259]
 layout_mode = 2
 text = "Next"
