@@ -1,38 +1,33 @@
 extends CanvasLayer
 
-@onready var content_txt = $TextureRect/MarginContainer/VBoxContainer/Content
-@onready var next_btn = $TextureRect/MarginContainer/VBoxContainer/HBoxContainer/NextBtn
-@onready var prev_btn = $TextureRect/MarginContainer/VBoxContainer/HBoxContainer/PrevBtn
-
-var txt_idx: int = 0
-var txt_content = [
-	"[ul]
-	Fend off mascots from rival schools!
-	WASD keys to move
-	Left click to throw[/ul]", 
-	"[ul]
-	Pickups give temporary effects!
-	Collect enough School Spirit Orbs for a short boost![/ul]"
+var pages = [
+	{
+		"layout": "sprites_bottom", 
+		"text": "[center]Mascots from rival schools are invading campus!\nHow long can you fend them off?[/center]",
+		"sprites": ["placeholder"]
+	},
+	{
+		"layout": "sprites_beside", 
+		"lines": [
+			{"text": "FIRST LINE", "sprite": "placeholder"},
+			{"text": "SECOND LINE", "sprite": "placeholder"}
+		]
+	}
 ]
 
-func _ready():
-	_update_txt()
-	next_btn.pressed.connect(_on_next)
-	prev_btn.pressed.connect(_on_prev)
-	
-func _on_prev():
-	if txt_idx > 0:
-		txt_idx -= 1
-	_update_txt()
-	
-func _on_next():
-	if txt_idx < len(txt_content)-1:
-		txt_idx += 1
-	elif txt_idx == len(txt_content)-1:
-		get_tree().change_scene_to_file("res://Scenes/game.tscn")
-	_update_txt()
+@onready var vbox = $TextureRect/MarginContainer/VBoxContainer
+var page_idx: int = 0
 
-func _update_txt():
-	if txt_idx == len(txt_content)-1:
-		next_btn.text = "Start Game!"
-	content_txt.text = txt_content[txt_idx]
+func _update_page():
+	# clear existing children of vbox first!
+	for child in vbox.get_children():
+		child.queue_free()
+		
+	var curr_page = pages[page_idx]
+	print(curr_page["layout"])
+	if curr_page["layout"] == "sprites_bottom":
+		print("sprites will be drawn at bottom!")
+		
+	elif curr_page["layout"] == "sprites_beside":
+		print("sprites will be drawn beside each line!")
+	
