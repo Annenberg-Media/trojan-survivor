@@ -37,6 +37,7 @@ var pages = [
 
 @onready var vbox = $TextureRect/MarginContainer/VBoxContainer
 var page_idx: int = 2
+var font = load("res://Resources/fonts/KiriFont.ttf")
 
 func _update_page():
 	# clear existing children of vbox first!
@@ -47,10 +48,12 @@ func _update_page():
 	# print(curr_page["layout"])
 	var title = RichTextLabel.new()
 	title.text = curr_page["title"]
+	title.clip_contents = false
 	title.bbcode_enabled = true
-	title.add_theme_font_size_override("normal_font_size", 42)
-	title.custom_minimum_size = Vector2(0, 90)
-	title.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	title.add_theme_font_override("normal_font", font)
+	title.add_theme_font_size_override("normal_font_size", 40)
+	title.custom_minimum_size = Vector2(0, 120)
+	title.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	vbox.add_child(title)
 		
 	if curr_page["layout"] == "sprites_bottom":
