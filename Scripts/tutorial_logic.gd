@@ -27,7 +27,7 @@ var pages = [
 	}, 
 	{
 		"layout": "sprites_beside", 
-		"title": "[center]Powerups[/center]",
+		"title": "[center]Opponent Drops[/center]",
 		"lines": [
 			{"text": "Pickups grant temporary upgrades!", "sprite": "res://Resources/still_sprites/pickups.png"},
 			{"text": "Collect enough ``school spirit orbs'' for a boost! ", "sprite": "res://Resources/pickup_sprites/exporb_pickup.png"}
@@ -36,7 +36,7 @@ var pages = [
 ]
 
 @onready var vbox = $TextureRect/MarginContainer/VBoxContainer
-var page_idx: int = 2
+var page_idx: int = 0
 var font = load("res://Resources/fonts/KiriFont.ttf")
 
 func _update_page():
@@ -52,7 +52,7 @@ func _update_page():
 	title.bbcode_enabled = true
 	title.add_theme_font_override("normal_font", font)
 	title.add_theme_font_size_override("normal_font_size", 40)
-	title.custom_minimum_size = Vector2(0, 120)
+	title.custom_minimum_size = Vector2(0, 60)
 	title.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	vbox.add_child(title)
 		
@@ -81,15 +81,36 @@ func _update_page():
 			hbox.add_child(container)  # add container to hbox instead of tex directly
 		vbox.add_child(hbox)
 		
+		# navigation buttons
+		var btn_hbox = HBoxContainer.new()
+		btn_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		btn_hbox.custom_minimum_size = Vector2(700, 40)
+		var prev_btn = Button.new()
+		prev_btn.text = "Previous"
+		var next_btn = Button.new()
+		next_btn.text = "Next"
+		prev_btn.pressed.connect(_on_prev)
+		next_btn.pressed.connect(_on_next)
+		
+		var spacer = Control.new()
+		spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		btn_hbox.add_child(prev_btn)
+		btn_hbox.add_child(spacer)
+		btn_hbox.add_child(next_btn)
+		var v_spacer = Control.new()
+		v_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		vbox.add_child(v_spacer)
+		vbox.add_child(btn_hbox)
+		
 	elif curr_page["layout"] == "sprites_beside":
 		for line in curr_page["lines"]:
 			var hbox = HBoxContainer.new()
-			hbox.custom_minimum_size = Vector2(0, 80)
+			hbox.custom_minimum_size = Vector2(0, 60)
 			hbox.alignment = BoxContainer.ALIGNMENT_CENTER
 			hbox.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 
 			var container = Control.new()
-			container.custom_minimum_size = Vector2(100, 48)
+			container.custom_minimum_size = Vector2(100, 130)
 			container.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 			container.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 
@@ -113,6 +134,42 @@ func _update_page():
 			hbox.add_child(label)
 			hbox.add_child(container)
 			vbox.add_child(hbox)
+		
+		# navigation buttons
+		var btn_hbox = HBoxContainer.new()
+		btn_hbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		btn_hbox.custom_minimum_size = Vector2(700, 40)
+		var prev_btn = Button.new()
+		prev_btn.text = "Previous"
+		var next_btn = Button.new()
+		if page_idx < len(pages) - 1:
+			next_btn.text = "Next"
+		elif page_idx == len(pages) -1: 
+			next_btn.text = "Start Game!"
+		prev_btn.pressed.connect(_on_prev)
+		next_btn.pressed.connect(_on_next)
+		
+		var spacer = Control.new()
+		spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		btn_hbox.add_child(prev_btn)
+		btn_hbox.add_child(spacer)
+		btn_hbox.add_child(next_btn)
+		var v_spacer = Control.new()
+		v_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		vbox.add_child(v_spacer)
+		vbox.add_child(btn_hbox)
 	
 func _ready():
 	_update_page()
+	
+func _on_prev():
+	if page_idx >= 1:
+		page_idx -= 1
+		_update_page()
+
+func _on_next():
+	if page_idx < len(pages)-1:
+		page_idx += 1
+		_update_page() 
+	elif page_idx == len(pages)-1:
+		get_tree().change_scene_to_file("res://Scenes/game.tscn")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://do6oq20rivpvv"]
 
-[ext_resource type="Script" uid="uid://crxf2b05xmvbt" path="res://Scripts/tutorial_logic.gd" id="1_feyax"]
+[ext_resource type="Script" uid="uid://danyb7ny3h3wv" path="res://Scripts/tutorial_logic.gd" id="1_feyax"]
 [ext_resource type="Texture2D" uid="uid://csuhqc6w2fwya" path="res://Textures/tutorial_backdrop-export.png" id="1_ka2pi"]
 
 [node name="canvas" type="CanvasLayer" unique_id=571249922]
