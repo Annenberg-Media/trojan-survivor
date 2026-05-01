@@ -128,7 +128,12 @@ func _on_player_game_over() -> void:
 	call_deferred("_go_to_title")
 	
 func _go_to_title() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	var leaderboard_scn = preload("res://Scenes/leaderboard.tscn").instantiate()
+	leaderboard_scn.final_score = score
+	get_tree().root.add_child(leaderboard_scn)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = leaderboard_scn
+	# get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_player_levelup() -> void:
 	# pause game

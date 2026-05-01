@@ -22,6 +22,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 Scoring="*res://Scripts/scoring.gd"
+Firebase="*uid://cvb26atjckwlq"
+FirebaseSetup="*uid://bgcspvjlo8yi0"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-firebase/plugin.cfg")
 
 [input]
 
