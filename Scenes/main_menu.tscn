@@ -1,12 +1,19 @@
 [gd_scene format=3 uid="uid://ckce4dffk4dim"]
 
 [ext_resource type="Script" uid="uid://cwsaaouj1fp76" path="res://Scripts/main_menu.gd" id="1_nt51f"]
+[ext_resource type="Texture2D" uid="uid://dv04q8i5qwhjk" path="res://Textures/title.png" id="2_48xlc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q0kh2"]
 font_size = 36
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_8d33d"]
 font_size = 36
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_obf5r"]
 font_size = 52
@@ -16,6 +23,15 @@ script = ExtResource("1_nt51f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1656963387]
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=2006202139]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48xlc")
+expand_mode = 1
+
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=676109522]
 layout_mode = 3
 anchors_preset = 15
@@ -24,21 +40,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Start" type="Button" parent="CanvasLayer/Control" unique_id=1492082903]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -40.0
-offset_right = 150.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=775947846]
+layout_mode = 0
+offset_top = 187.0
+offset_right = 1153.0
+offset_bottom = 391.0
+alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Start" unique_id=224113257]
+[node name="Start" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1492082903]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_48xlc")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Start" unique_id=224113257]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -54,21 +70,14 @@ grow_vertical = 2
 text = "START"
 label_settings = SubResource("LabelSettings_q0kh2")
 
-[node name="Tutorial" type="Button" parent="CanvasLayer/Control" unique_id=1398480297]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 76.0
-offset_right = 150.0
-offset_bottom = 156.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Tutorial" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1398480297]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ehe0")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/Tutorial" unique_id=1736665744]
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer/Tutorial" unique_id=1736665744]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -84,7 +93,18 @@ grow_vertical = 2
 text = "TUTORIAL"
 label_settings = SubResource("LabelSettings_8d33d")
 
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1109615942]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ce3w2")
+text = "LEADERBOARD"
+
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=891913043]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -99,4 +119,5 @@ grow_vertical = 2
 text = "Trojan Survivors"
 label_settings = SubResource("LabelSettings_obf5r")
 
-[connection signal="pressed" from="CanvasLayer/Control/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
