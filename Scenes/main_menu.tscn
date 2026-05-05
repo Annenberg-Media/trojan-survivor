@@ -93,7 +93,7 @@ grow_vertical = 2
 text = "TUTORIAL"
 label_settings = SubResource("LabelSettings_8d33d")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1109615942]
+[node name="leaderboard" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1109615942]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -121,3 +121,4 @@ label_settings = SubResource("LabelSettings_obf5r")
 
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/leaderboard" to="." method="_on_leaderboard_pressed"]

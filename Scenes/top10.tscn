@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dor338cbklcli"]
+
+[ext_resource type="Script" uid="uid://b4s831eiidi02" path="res://Scripts/top_10.gd" id="1_x1uox"]
+[ext_resource type="Texture2D" uid="uid://csuhqc6w2fwya" path="res://Textures/tutorial_backdrop-export.png" id="2_7gbpq"]
+[ext_resource type="FontFile" uid="uid://by2viepm8y7ps" path="res://Resources/fonts/KiriFont.ttf" id="3_f0soj"]
+
+[sub_resource type="FontVariation" id="FontVariation_vaklr"]
+base_font = ExtResource("3_f0soj")
+spacing_top = 5
+
+[node name="Top10" type="Node2D" unique_id=2137891894]
+script = ExtResource("1_x1uox")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1809141108]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=101756715]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_7gbpq")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=214914269]
+offset_left = 75.0
+offset_top = 80.0
+offset_right = 1077.0
+offset_bottom = 570.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=851288061]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1668840326]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_vaklr")
+theme_override_font_sizes/normal_font_size = 36
+text = "Top 10  Scores"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=53142454]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=72665441]
+custom_minimum_size = Vector2(460, 300)
+layout_mode = 2
+
+[node name="first" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1505127908]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "1. --"
+horizontal_alignment = 1
+
+[node name="second" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=498638677]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "2. --"
+horizontal_alignment = 1
+
+[node name="third" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=638504976]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "3. --"
+horizontal_alignment = 1
+
+[node name="fourth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=53254923]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "4. --"
+horizontal_alignment = 1
+
+[node name="fifth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=810031500]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "5. --"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=511923252]
+custom_minimum_size = Vector2(460, 300)
+layout_mode = 2
+
+[node name="sixth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=236149208]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "6. --"
+horizontal_alignment = 1
+
+[node name="seventh" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1777437247]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "7. --"
+horizontal_alignment = 1
+
+[node name="eighth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1625557699]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "8. --"
+horizontal_alignment = 1
+
+[node name="ninth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1873216165]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "9. --"
+horizontal_alignment = 1
+
+[node name="tenth" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1630597349]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "10. --"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1149079186]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=380230478]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_pressed"]

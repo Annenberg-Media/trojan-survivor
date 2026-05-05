@@ -28,7 +28,7 @@ offset_bottom = 569.0
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=202095631]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(700, 100)
 layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_fjik7")
 theme_override_font_sizes/normal_font_size = 36
@@ -80,4 +80,5 @@ text = "Play Again"
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/submitBtn" to="." method="_on_submit_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/LeaderboardBtn" to="." method="_on_leaderboard_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/PlayAgainBtn" to="." method="_on_play_again_btn_pressed"]
