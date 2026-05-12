@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://wwqx5pxi66wa"]
+
+[ext_resource type="Script" uid="uid://bmi6xnyqjof0b" path="res://Scenes/credits.gd" id="1_ccovl"]
+[ext_resource type="Texture2D" uid="uid://csuhqc6w2fwya" path="res://Textures/tutorial_backdrop-export.png" id="1_r18jl"]
+[ext_resource type="FontFile" uid="uid://by2viepm8y7ps" path="res://Resources/fonts/KiriFont.ttf" id="2_gryuy"]
+
+[sub_resource type="FontVariation" id="FontVariation_ccovl"]
+base_font = ExtResource("2_gryuy")
+spacing_top = 15
+
+[node name="Credits" type="Node2D" unique_id=1368107722]
+script = ExtResource("1_ccovl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=7177916]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=458619778]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_r18jl")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1556030403]
+offset_left = 78.0
+offset_top = 83.0
+offset_right = 1077.0
+offset_bottom = 564.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1049005330]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1338849054]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_ccovl")
+theme_override_font_sizes/normal_font_size = 40
+text = "CREDITS"
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=465406963]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[ul]Programmer, Artist - Ji Hwan (Jon) Moon | jihwanmo@usc.edu
+Programmer - Dowon Lee | dwlee0802@gmail.com
+Programmer - Natalie Chang | natchang@gmail.com
+Programmer - Kashvi Jayagiri | jayagiri@usc.edu
+Artist - JuAn Lee | 02jlee22@gmail.com"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=94789078]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
